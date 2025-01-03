@@ -43,10 +43,8 @@ export default function RootLayout({
       <body
         className={`${jetBrainsMono.variable} ${inter.variable} bg-zinc-950 font-inter text-zinc-50 antialiased`}
       >
-        <main>
-          <Header />
-          {children}
-        </main>
+        <Header />
+        {children}
         <Toaster position="top-right" richColors expand />
       </body>
     </html>

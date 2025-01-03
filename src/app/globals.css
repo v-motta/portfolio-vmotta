@@ -6,6 +6,10 @@
   .filter-linkedIn {
     @apply invert-[.26] sepia-[.95] saturate-[68.03] hue-rotate-[201deg] brightness-[.96] contrast-[.92];
   }
+
+  .concat-variable {
+    @apply text-blue-500/80 before:text-bracket before:content-['${'] after:text-bracket after:content-['}']
+  }
 }
 
 @layer base {
