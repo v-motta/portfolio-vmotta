@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jet-brains-mono',
@@ -48,6 +49,7 @@ export default function RootLayout({
         {children}
         <Toaster position="top-right" richColors expand />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
