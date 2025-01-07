@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
+import { Analytics } from '@vercel/analytics/next'
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jet-brains-mono',
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Toaster position="top-right" richColors expand />
+        <Analytics />
       </body>
     </html>
   )
