@@ -1,0 +1,163 @@
+{
+  "projects": [
+    {
+      "id": "5a2a0def-b204-4a5e-8b08-fa2c796ce0e6",
+      "title": "[Backend] Next Saas RBAC",
+      "subtitle": "Some subtitle.",
+      "description": "Some description.",
+      "slug": "next-saas-rbac",
+      "technologies": [
+        "nodejs",
+        "typescript",
+        "docker",
+        "prisma"
+      ]
+    },
+    {
+      "id": "c29715fe-1304-4764-859e-9e481f14c9b2",
+      "title": "[Frontend] Next Saas RBAC",
+      "subtitle": "Some subtitle.",
+      "description": "Some description.",
+      "slug": "next-saas-rbac",
+      "technologies": [
+        "react",
+        "typescript",
+        "next"
+      ]
+    },
+    {
+      "id": "56fd593c-a391-4bed-9e76-13d9a4901b48",
+      "title": "To-Do List",
+      "subtitle": "A simple and efficient to-do list app developed through the Rocketseat course.",
+      "description": "This to-do list application, completed in 2024, leverages React, TypeScript, and Vite for a modern and responsive user experience. Following the comprehensive Rocketseat course, the project showcases best practices in frontend development. The app is containerized using Docker and employs GitHub Actions for CI/CD pipelines.",
+      "slug": "to-do-list",
+      "github": "https://github.com/v-motta/to-do-list-vite",
+      "deployUrl": "https://todolist.vmotta.dev",
+      "pathImages": [
+        "/projects/todolist/todolist1.png",
+        "/projects/todolist/todolist2.png",
+        "/projects/todolist/todolist3.png"
+      ],
+      "technologies": [
+        "react",
+        "typescript",
+        "vite",
+        "docker",
+        "githubactions",
+        "github"
+      ]
+    },
+    {
+      "id": "b52d31fd-a9a4-44a3-ab95-35ce9eab19b1",
+      "title": "[Backend] Cost Guardian",
+      "subtitle": "Project not finished.",
+      "description": "Project not finished.",
+      "slug": "cost-guardian-backend",
+      "technologies": []
+    },
+    {
+      "id": "0a1e5073-ea76-4923-8f90-436f57125c06",
+      "title": "[Frontend] Cost Guardian",
+      "subtitle": "Project not finished.",
+      "description": "Project not finished.",
+      "slug": "cost-guardian-frontend",
+      "technologies": []
+    },
+    {
+      "id": "37a15a76-ebd0-4737-91f8-c5dcc1f641d0",
+      "title": "Seeliefy",
+      "subtitle": "A simple institutional website for Game Studio Seeliefy.",
+      "description": "This 2024 institutional website is built using React, TypeScript, and Vite, with Bootstrap 5.3 for responsive design. The project follows frontend best practices, using Docker for consistent development environments and GitHub Actions for automating the CI/CD pipeline. This setup ensures a modern, responsive user experience and streamlined deployment.",
+      "slug": "seeliefy",
+      "github": "https://github.com/v-motta/seeliefy",
+      "deployUrl": "https://seeliefy.com",
+      "pathImages": [
+        "/projects/seeliefy/seeliefy1.png",
+        "/projects/seeliefy/seeliefy2.png",
+        "/projects/seeliefy/seeliefy3.png"
+      ],
+      "technologies": [
+        "react",
+        "typescript",
+        "bootstrap",
+        "docker",
+        "githubactions"
+      ]
+    },
+    {
+      "id": "7f0d6818-ecc8-41c7-a449-30b8d5d86771",
+      "title": "Love App",
+      "subtitle": "A app developed to show some pictures of my love.",
+      "description": "Some description.",
+      "slug": "love-app",
+      "github": "https://github.com/v-motta/love-app",
+      "deployUrl": "https://love.vmotta.dev",
+      "pathImages": [
+        "/projects/loveapp/loveapp1.png"
+      ],
+      "technologies": [
+        "angular",
+        "typescript",
+        "docker",
+        "githubactions"
+      ]
+    },
+    {
+      "id": "a637a206-d721-4b8a-8f8b-2e6804f5f562",
+      "title": "My portfolio",
+      "subtitle": "My portfolio website.",
+      "description": "Some description.",
+      "slug": "vmotta-dev",
+      "github": "https://github.com/v-motta/vmotta.dev",
+      "technologies": [
+        "react",
+        "typescript",
+        "nextjs",
+        "docker",
+        "githubactions"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "id": "d1e6757d-3cb8-4d1d-bc40-2ea440724f9c",
+      "title": "Masterizando o Tailwind",
+      "slug": "masterizando-o-tailwind",
+      "company": "Rocketseat",
+      "mainTechnology": "tailwind",
+      "issueDate": "01-06-2024"
+    },
+    {
+      "id": "1a531539-4e51-469d-90d2-053a25d43641",
+      "title": "Next.js App Router e Testes",
+      "slug": "nextjs-app-router-e-testes",
+      "company": "Rocketseat",
+      "mainTechnology": "nextjs",
+      "issueDate": "01-09-2024"
+    },
+    {
+      "id": "ed067113-1190-4872-b7aa-eb06c17ad120",
+      "title": "Fundamentos de Python",
+      "slug": "fundamentos-de-python",
+      "company": "Rocketseat",
+      "mainTechnology": "python",
+      "issueDate": "08-02-2024"
+    },
+    {
+      "id": "458fb959-f819-4e86-8af5-cb0741ba36c3",
+      "title": "Figma",
+      "slug": "figma",
+      "company": "Rocketseat",
+      "mainTechnology": "figma",
+      "issueDate": "05-25-2024"
+    },
+    {
+      "id": "600d1c9e-b85b-4196-922d-f1c178a139c1",
+      "title": "Fundamentos do React",
+      "slug": "fundamentos-do-react",
+      "company": "Rocketseat",
+      "mainTechnology": "react",
+      "issueDate": "06-15-2024"
+    }
+  ]
+}

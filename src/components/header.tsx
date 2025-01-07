@@ -4,8 +4,23 @@ import { LinkedInIcon } from './icons/linkedin'
 import { WhatsAppIcon } from './icons/whatsapp'
 
 export async function Header() {
+  const links = [
+    {
+      href: '/projects',
+      title: 'Projects',
+    },
+    {
+      href: '/certificates',
+      title: 'Certificates',
+    },
+    {
+      href: '/contact',
+      title: 'Contact',
+    },
+  ]
+
   return (
-    <header className="fixed bottom-0 z-50 w-full md:top-0">
+    <header className="sticky bottom-0 z-50 h-24 w-full md:top-0">
       <nav className="flex flex-col items-center justify-between gap-3 border-zinc-500 border-b bg-zinc-950 bg-opacity-95 pt-2 pb-3 md:h-24 md:flex-row md:border-none md:px-8 md:py-8">
         <Link
           href="/"
@@ -14,25 +29,16 @@ export async function Header() {
           v-motta
         </Link>
 
-        <div className="mb-1.5 space-x-3 font-jet-brains-mono md:mb-0">
-          <Link
-            href="/projects"
-            className="hover:underline hover:underline-offset-8"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/certificates"
-            className="hover:underline hover:underline-offset-8"
-          >
-            Certificates
-          </Link>
-          <Link
-            href="/contact"
-            className="hover:underline hover:underline-offset-8"
-          >
-            Contact
-          </Link>
+        <div className="mb-1.5 flex gap-8 font-jet-brains-mono md:mb-0">
+          {links.map(({ href, title }) => (
+            <Link
+              key={title}
+              href={href}
+              className="hover:underline hover:underline-offset-8"
+            >
+              {title}
+            </Link>
+          ))}
         </div>
 
         <div className="flex items-center gap-4">
