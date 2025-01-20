@@ -6,12 +6,7 @@
       "subtitle": "Some subtitle.",
       "description": "Some description.",
       "slug": "next-saas-rbac",
-      "technologies": [
-        "nodejs",
-        "typescript",
-        "docker",
-        "prisma"
-      ]
+      "technologies": ["nodejs", "typescript", "docker", "prisma"]
     },
     {
       "id": "c29715fe-1304-4764-859e-9e481f14c9b2",
@@ -19,11 +14,7 @@
       "subtitle": "Some subtitle.",
       "description": "Some description.",
       "slug": "next-saas-rbac",
-      "technologies": [
-        "react",
-        "typescript",
-        "next"
-      ]
+      "technologies": ["react", "typescript", "next"]
     },
     {
       "id": "56fd593c-a391-4bed-9e76-13d9a4901b48",
@@ -92,15 +83,8 @@
       "slug": "love-app",
       "github": "https://github.com/v-motta/love-app",
       "deployUrl": "https://love.vmotta.dev",
-      "pathImages": [
-        "/projects/loveapp/loveapp1.png"
-      ],
-      "technologies": [
-        "angular",
-        "typescript",
-        "docker",
-        "githubactions"
-      ]
+      "pathImages": ["/projects/loveapp/loveapp1.png"],
+      "technologies": ["angular", "typescript", "docker", "githubactions"]
     },
     {
       "id": "a637a206-d721-4b8a-8f8b-2e6804f5f562",
@@ -125,7 +109,7 @@
       "slug": "masterizando-o-tailwind",
       "company": "Rocketseat",
       "mainTechnology": "tailwind",
-      "issueDate": "01-06-2024"
+      "issueDate": "06-01-2024"
     },
     {
       "id": "1a531539-4e51-469d-90d2-053a25d43641",
@@ -133,7 +117,7 @@
       "slug": "nextjs-app-router-e-testes",
       "company": "Rocketseat",
       "mainTechnology": "nextjs",
-      "issueDate": "01-09-2024"
+      "issueDate": "06-10-2024"
     },
     {
       "id": "ed067113-1190-4872-b7aa-eb06c17ad120",
