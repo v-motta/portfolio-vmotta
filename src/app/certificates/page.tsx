@@ -1,4 +1,4 @@
-import { certificates } from '../data.json'
+import { certificates } from '@/app/data.json'
 import { CertificateCard } from './card'
 
 export default function ProjectsPage() {
