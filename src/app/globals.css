@@ -4,10 +4,10 @@
 
 @layer components {
   .concat-variable {
-    @apply text-blue-500/80 before:text-bracket before:content-['${'] after:text-bracket after:content-['}'];
+    @apply text-blue-500/80 before:text-bracket text-nowrap before:content-['${'] after:text-bracket after:content-['}'];
   }
 
   .section-title {
-    @apply concat-variable text-center font-bold text-4xl;
+    @apply concat-variable text-center font-bold text-3xl 2xl:text-4xl font-jet-brains-mono;
   }
 }
