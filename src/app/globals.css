@@ -8,6 +8,6 @@
   }
 
   .section-title {
-    @apply concat-variable text-center font-bold text-3xl 2xl:text-4xl font-jet-brains-mono;
+    @apply concat-variable text-center font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-jet-brains-mono;
   }
 }

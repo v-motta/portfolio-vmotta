@@ -24,7 +24,7 @@ export async function Header() {
   ]
 
   return (
-    <header className="sticky bottom-0 z-50 h-24 w-full md:top-0">
+    <header className="sticky bottom-0 z-50 w-full md:top-0 md:h-24">
       <nav className="flex flex-col items-center justify-between gap-3 border-zinc-600 border-b bg-zinc-950 bg-opacity-90 pt-2 pb-3 md:h-24 md:flex-row md:px-8 md:py-8">
         <Link
           href="/"
@@ -33,12 +33,12 @@ export async function Header() {
           v-motta
         </Link>
 
-        <div className="mb-1.5 flex gap-8 font-jet-brains-mono md:mb-0">
+        <div className="mb-1.5 flex flex-wrap justify-center gap-x-8 gap-y-4 font-jet-brains-mono md:mb-0">
           {links.map(({ href, title }) => (
             <Link
               key={title}
               href={href}
-              className="hover:underline hover:underline-offset-8"
+              className="text-nowrap hover:underline hover:underline-offset-8"
             >
               {title}
             </Link>

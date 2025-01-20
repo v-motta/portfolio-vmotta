@@ -5,13 +5,10 @@ import Link from 'next/link'
 
 export function TopProjects() {
   return (
-    <section
-      id="top_projects"
-      className="flex flex-col gap-12 px-8 py-16 2xl:px-36"
-    >
+    <section id="top_projects" className="flex flex-col gap-12 py-16">
       <h1 className="section-title">Top Projects</h1>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {projects.slice(0, 3).map(project => (
           <div
             key={project.id}
