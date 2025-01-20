@@ -6,6 +6,10 @@ import { WhatsAppIcon } from './icons/whatsapp'
 export async function Header() {
   const links = [
     {
+      href: '/about-me',
+      title: 'About me',
+    },
+    {
       href: '/projects',
       title: 'Projects',
     },
@@ -21,7 +25,7 @@ export async function Header() {
 
   return (
     <header className="sticky bottom-0 z-50 h-24 w-full md:top-0">
-      <nav className="flex flex-col items-center justify-between gap-3 border-zinc-500 border-b bg-zinc-950 bg-opacity-95 pt-2 pb-3 md:h-24 md:flex-row md:border-none md:px-8 md:py-8">
+      <nav className="flex flex-col items-center justify-between gap-3 border-zinc-600 border-b bg-zinc-950 bg-opacity-90 pt-2 pb-3 md:h-24 md:flex-row md:px-8 md:py-8">
         <Link
           href="/"
           className="font-extrabold font-jet-brains-mono text-2xl text-zinc-200 transition-colors hover:text-zinc-500"
