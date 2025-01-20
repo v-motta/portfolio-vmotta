@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 import { Analytics } from '@vercel/analytics/next'
@@ -46,7 +47,11 @@ export default function RootLayout({
         className={`${jetBrainsMono.variable} ${inter.variable} bg-zinc-950 font-inter text-zinc-50 antialiased`}
       >
         <Header />
+
         {children}
+
+        <Footer />
+
         <Toaster position="top-right" richColors expand />
         <Analytics />
         <SpeedInsights />
