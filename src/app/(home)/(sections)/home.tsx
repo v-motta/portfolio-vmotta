@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import { ScrollDownIcon } from './scroll-down-icon'
+import { ScrollDownIcon } from '../scroll-down-icon'
 
 export function Home() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[calc(100vh-6rem)] w-full px-44"
+      className="relative flex min-h-[calc(100vh-6rem)] w-full justify-between px-8 2xl:px-36"
     >
       <div className="flex flex-col justify-center gap-8">
         <div>
-          <h1 className="font-bold font-jet-brains-mono text-3xl 2xl:text-5xl">
+          <h1 className="font-bold font-jet-brains-mono text-3xl xl:text-4xl 2xl:text-5xl">
             Hi, I am <span className="concat-variable">Vinicius Motta</span>
           </h1>
           <h2 className="font-jet-brains-mono font-semibold text-xl 2xl:text-3xl">
@@ -32,7 +32,7 @@ export function Home() {
           quality={100}
           priority
           alt="A picture of myself"
-          className="rounded-xl shadow-[-20px_-20px] shadow-blue-800"
+          className="rounded-xl shadow-[-10px_-10px] shadow-blue-800"
         />
       </div>
 

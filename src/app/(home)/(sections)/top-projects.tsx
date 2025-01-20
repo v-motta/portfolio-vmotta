@@ -1,22 +1,25 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { projects } from '../data.json'
+import { projects } from '../../data.json'
 
-export function NewestProjects() {
+export function TopProjects() {
   return (
-    <section id="newest_projects" className="flex flex-col gap-12 px-44 py-16">
-      <h1 className="section-title">Newest Projects</h1>
+    <section
+      id="top_projects"
+      className="flex flex-col gap-12 px-8 py-16 2xl:px-36"
+    >
+      <h1 className="section-title">Top Projects</h1>
 
-      <div className="grid grid-cols-4 grid-rows-2 gap-6">
-        {projects.slice(0, 8).map(project => (
+      <div className="grid grid-cols-3 gap-6">
+        {projects.slice(0, 3).map(project => (
           <div
             key={project.id}
-            className="flex flex-col gap-6 rounded-xl border border-zinc-200 p-5"
+            className="flex h-72 flex-col gap-6 rounded-xl border border-zinc-200 p-5"
           >
             <div className="flex flex-1 flex-col gap-2">
               <h1 className="truncate font-bold text-xl">{project.title}</h1>
-              <p className="line-clamp-2 text-balance text-zinc-400">
+              <p className="line-clamp-3 text-balance text-zinc-400">
                 {project.description}
               </p>
             </div>
