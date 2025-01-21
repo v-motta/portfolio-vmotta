@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { CertificateCard } from '../certificates/card'
 import { Certificates } from './(sections)/certificates'
 import { Main } from './(sections)/main'
+import { Technologies } from './(sections)/technologies'
 import { TopProjects } from './(sections)/top-projects'
 
 export default function HomePage() {
@@ -19,6 +20,10 @@ export default function HomePage() {
       <Separator />
 
       <Certificates />
+
+      <Separator />
+
+      <Technologies />
     </main>
   )
 }
