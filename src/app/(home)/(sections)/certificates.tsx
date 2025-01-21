@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export function Certificates() {
   return (
-    <section id="certificates" className="flex flex-col gap-12 py-16">
+    <section id="certificates" className="flex flex-col gap-8 py-8 md:py-16">
       <h1 className="section-title">Latest Certificates</h1>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -17,7 +17,7 @@ export function Certificates() {
 
       <Button className="self-center" asChild>
         <Link href="/certificates">
-          Todos os certificados <ArrowRight />
+          See all certificates <ArrowRight />
         </Link>
       </Button>
     </section>

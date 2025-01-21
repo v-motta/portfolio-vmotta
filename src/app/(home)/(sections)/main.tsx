@@ -7,7 +7,7 @@ export function Main() {
       id="main"
       className="relative flex w-full flex-col-reverse items-center justify-center gap-16 py-10 lg:min-h-[calc(100vh-6rem)] lg:flex-row lg:justify-between"
     >
-      <div className="flex flex-col justify-center gap-8 text-center">
+      <div className="flex flex-col justify-center gap-8 text-center md:text-start">
         <div>
           <h1 className="font-bold font-jet-brains-mono text-3xl xl:text-4xl 2xl:text-5xl">
             Hi, I am <span className="concat-variable">Vinicius Motta</span>
@@ -27,12 +27,12 @@ export function Main() {
       <div className="content-center items-center">
         <Image
           src="/myself.webp"
+          priority
           width={384}
           height={384}
           quality={100}
-          priority
           alt="A picture of myself"
-          className="w-56 rounded-xl shadow-[-10px_-10px] shadow-blue-800 lg:w-auto"
+          className="aspect-square w-56 rounded-xl object-cover shadow-[-10px_-10px] shadow-blue-800 lg:w-auto"
         />
       </div>
 

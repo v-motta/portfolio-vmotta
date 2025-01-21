@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export function TopProjects() {
   return (
-    <section id="top_projects" className="flex flex-col gap-12 py-16">
+    <section id="top_projects" className="flex flex-col gap-8 py-8 md:py-16">
       <h1 className="section-title">Top Projects</h1>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -22,7 +22,7 @@ export function TopProjects() {
             </div>
 
             <Button variant="outline" asChild>
-              <Link href={`projects/${project.slug}`}>Saiba mais</Link>
+              <Link href={`projects/${project.slug}`}>See details</Link>
             </Button>
           </div>
         ))}
@@ -30,7 +30,7 @@ export function TopProjects() {
 
       <Button className="self-center" asChild>
         <Link href="/projects">
-          Todos os projetos <ArrowRight />
+          See all projects <ArrowRight />
         </Link>
       </Button>
     </section>
