@@ -1,8 +1,4 @@
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { CertificateCard } from '../certificates/card'
 import { Certificates } from './(sections)/certificates'
 import { Main } from './(sections)/main'
 import { Technologies } from './(sections)/technologies'
