@@ -20,7 +20,8 @@ export function CertificateCard({ certificate }: CardCertificateProps) {
         width={1000}
         height={1000}
         quality={100}
-        className="aspect-video h-52 rounded-lg object-cover object-center"
+        priority
+        className="aspect-video rounded-lg object-cover object-center"
       />
       <div className="text-center lg:text-start">
         <h1 className="mb-2 line-clamp-2 h-14 font-bold font-mono text-xl">
