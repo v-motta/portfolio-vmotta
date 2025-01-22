@@ -10,18 +10,21 @@ export default async function CertificatesPage() {
   })
 
   return (
-    <div className="px-6 pt-10 xl:px-16 2xl:px-36">
-      <div className="flex justify-between">
-        <h1>Certificates page</h1>
+    <div>
+      <div className="flex items-center justify-between">
+        <h1 className="font-jet-brains-mono text-xl">
+          Certificates:{' '}
+          <span className="concat-variable">{allCertificates.length}</span>
+        </h1>
 
         <Button asChild>
           <Link href="certificates/add-new">
-            Add new <CirclePlus />
+            Add new certificate <CirclePlus />
           </Link>
         </Button>
       </div>
 
-      <div className="grid gap-5 py-8 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid gap-5 py-8 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6">
         {allCertificates.map(certificate => (
           <CertificateCard key={certificate.id} certificate={certificate} />
         ))}

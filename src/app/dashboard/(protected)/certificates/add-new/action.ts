@@ -1,14 +1,17 @@
 'use server'
+
 import { createSlug } from '@/lib/create-slug'
 import { prisma } from '@/lib/db-client'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
 const addNewCertificateFormSchema = z.object({
-  title: z.string(),
-  company: z.string(),
-  main_technology: z.string(),
-  issue_date: z.string(),
+  title: z.string().min(1, { message: 'Title is required' }),
+  company: z.string().min(1, { message: 'Company is required' }),
+  main_technology: z
+    .string()
+    .min(1, { message: 'Main technology is required' }),
+  issue_date: z.string().min(1, { message: 'Issue date is required' }),
 })
 
 export async function addNewCertificateForm(data: FormData) {
