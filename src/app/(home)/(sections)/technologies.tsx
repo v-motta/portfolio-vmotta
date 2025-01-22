@@ -41,7 +41,7 @@ export function Technologies() {
     <section id="technologies" className="flex flex-col gap-8 py-8 md:py-16">
       <h1 className="section-title">Technologies</h1>
 
-      <Tabs defaultValue="frontend" className="mx-auto w-full md:w-2/3">
+      <Tabs defaultValue="frontend" className="mx-auto w-full md:w-2/5">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
           <TabsTrigger value="frontend">Front-End</TabsTrigger>
           <TabsTrigger value="backend">Back-End</TabsTrigger>
