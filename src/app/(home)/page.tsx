@@ -1,4 +1,5 @@
 import { Separator } from '@/components/ui/separator'
+import { ContactForm } from '../contact/contact-form'
 import { Certificates } from './(sections)/certificates'
 import { Main } from './(sections)/main'
 import { Technologies } from './(sections)/technologies'
@@ -20,6 +21,12 @@ export default function HomePage() {
       <Separator />
 
       <Technologies />
+
+      <Separator />
+
+      <div className="py-8 *:mx-auto md:py-16">
+        <ContactForm />
+      </div>
     </main>
   )
 }
