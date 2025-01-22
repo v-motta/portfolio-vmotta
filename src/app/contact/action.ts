@@ -1,11 +1,13 @@
+'use server'
+
 import { sendEmail } from '@/http/send-email'
 import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 const contactFormSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  message: z.string(),
+  name: z.string().min(1, { message: 'Name is required' }),
+  email: z.string().min(1, { message: 'E-mail is required.' }).email(),
+  message: z.string().min(1, { message: 'Message is required.' }),
 })
 
 export async function sendContactForm(data: FormData) {
