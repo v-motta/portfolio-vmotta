@@ -33,7 +33,9 @@ export function useFormState(
 
       setFormState(state)
 
-      if (state.success) requestFormReset(form)
+      if (state.success) {
+        requestFormReset(form)
+      }
     })
   }
 
