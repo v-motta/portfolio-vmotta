@@ -1,6 +1,4 @@
 'use client'
-
-import { LoadingIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -47,8 +45,8 @@ export function ContactForm() {
           />
         </div>
 
-        <Button type="submit" className="mt-3 w-full" disabled={false}>
-          {isPending ? <LoadingIcon /> : 'Send message'}
+        <Button type="submit" className="mt-3 w-full" isPending={isPending}>
+          Send message
         </Button>
       </form>
     </div>
