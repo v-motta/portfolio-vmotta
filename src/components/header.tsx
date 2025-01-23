@@ -28,12 +28,12 @@ export async function Header() {
       <nav className="flex flex-col items-center justify-between gap-3 border-zinc-600 border-b bg-zinc-950 bg-opacity-90 py-4 md:h-24 md:flex-row md:px-8 md:py-8">
         <Link
           href="/"
-          className="font-extrabold font-jet-brains-mono text-2xl text-zinc-200 transition-colors hover:text-zinc-500"
+          className="text-nowrap font-extrabold font-jet-brains-mono text-2xl text-zinc-200 transition-colors hover:text-zinc-500"
         >
           v-motta
         </Link>
 
-        <div className="mb-1.5 flex flex-wrap justify-center gap-x-8 gap-y-4 font-jet-brains-mono md:mb-0">
+        <div className="mb-1.5 flex flex-wrap justify-center gap-x-8 gap-y-4 font-jet-brains-mono md:mb-0 portrait:px-16 md:portrait:px-0">
           {links.map(({ href, title }) => (
             <Link
               key={title}
