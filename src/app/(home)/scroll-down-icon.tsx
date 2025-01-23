@@ -2,7 +2,7 @@ import { ChevronDown, Mouse } from 'lucide-react'
 
 export function ScrollDownIcon() {
   return (
-    <div className="hidden md:block">
+    <div className="hidden lg:block">
       <Mouse className="-translate-x-1/2 absolute bottom-16 left-1/2 block size-9 text-white" />
       <ChevronDown
         className="absolute bottom-8 left-1/2 block size-7 animate-bounce text-bracket"
