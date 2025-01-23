@@ -1,3 +1,7 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
 export interface CardCertificateProps {
@@ -7,15 +11,31 @@ export interface CardCertificateProps {
     slug: string
     company: string
     mainTechnology: string
+    imageUrl: string
     issueDate: Date | string
   }
+  onDelete?: (id: string) => void
 }
 
-export function CertificateCard({ certificate }: CardCertificateProps) {
+export function CertificateCard({
+  certificate,
+  onDelete,
+}: CardCertificateProps) {
   return (
-    <div className="flex flex-col gap-5 rounded-2xl border border-zinc-200 p-5">
+    <div className="relative flex flex-col gap-5 rounded-2xl border border-zinc-200 p-5">
+      {onDelete && (
+        <Button
+          size="icon"
+          variant="destructive"
+          className="absolute right-5 bottom-5"
+          onClick={() => onDelete(certificate.id)}
+        >
+          <Trash2 />
+        </Button>
+      )}
+
       <Image
-        src={`/certificates/${certificate.slug}.webp`}
+        src={certificate.imageUrl}
         alt=""
         width={1000}
         height={1000}
