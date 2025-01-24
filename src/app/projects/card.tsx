@@ -33,7 +33,7 @@ export function ProjectCard({ project }: CardProjectProps) {
       />
 
       <div className="text-center lg:text-start">
-        <h1 className="line-clamp-2 font-bold font-mono text-xl">
+        <h1 className="mb-2 line-clamp-2 font-bold font-mono text-xl">
           {project.title}
         </h1>
         <h2 className="font-semibold text-zinc-500">{project.subtitle}</h2>

@@ -47,8 +47,10 @@ export function CertificateCard({
         <h1 className="mb-2 line-clamp-2 h-14 font-bold font-mono text-xl">
           {certificate.title}
         </h1>
-        <h2 className="font-semibold text-zinc-400">{certificate.company}</h2>
-        <p className="text-zinc-400">
+        <h2 className="font-semibold text-zinc-600 dark:text-zinc-400">
+          {certificate.company}
+        </h2>
+        <p className="text-zinc-600 dark:text-zinc-400">
           Issued:{' '}
           {new Intl.DateTimeFormat('pt-BR', {
             day: '2-digit',
