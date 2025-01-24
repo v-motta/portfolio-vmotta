@@ -5,21 +5,28 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { useFormState } from '@/hooks/use-form-state'
+import { cn } from '@/lib/utils'
 import { AlertTriangle } from 'lucide-react'
+import type { ComponentProps } from 'react'
 import { sendContactForm } from './action'
 
-export function ContactForm() {
+interface ContactFormProps extends ComponentProps<'div'> {}
+
+export function ContactForm({ className, ...rest }: ContactFormProps) {
   const [{ errors, message, success }, handleSubmit, isPending] =
     useFormState(sendContactForm)
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center justify-center gap-y-5 sm:w-3/5 lg:w-2/5">
+    <div
+      className={cn(
+        'flex w-full flex-col items-center justify-center gap-y-5',
+        className
+      )}
+      {...rest}
+    >
       <h1 className="section-title">Contact me</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-col gap-3 landscape:w-2/3"
-      >
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
         {success === false && message && (
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />

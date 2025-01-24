@@ -25,7 +25,7 @@ export default function HomePage() {
       <Separator />
 
       <div className="py-6 *:mx-auto md:py-16">
-        <ContactForm />
+        <ContactForm className="w-full sm:w-3/5 lg:w-2/5" />
       </div>
     </main>
   )

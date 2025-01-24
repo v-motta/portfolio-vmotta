@@ -23,7 +23,7 @@ export function WaysToContactMe() {
   }
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center justify-center gap-y-8 portrait:md:w-auto">
+    <div className="flex w-full flex-col items-center justify-center gap-y-8 portrait:md:w-auto">
       <h1 className="section-title">Ways to contact me</h1>
 
       <div className="flex w-full flex-col gap-5 md:px-16 lg:px-0 xl:px-16 2xl:px-36">
