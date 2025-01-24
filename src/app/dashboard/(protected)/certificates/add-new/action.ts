@@ -1,7 +1,7 @@
 'use server'
-
 import { createSlug } from '@/lib/create-slug'
 import { prisma } from '@/lib/db-client'
+import { minio } from '@/lib/minio-client'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
@@ -12,6 +12,10 @@ const addNewCertificateFormSchema = z.object({
     .string()
     .min(1, { message: 'Main technology is required' }),
   issue_date: z.string().min(1, { message: 'Issue date is required' }),
+  // validate if is filled in the form
+  image: z.any().refine(value => value.size > 0, {
+    message: 'Image is required',
+  }),
 })
 
 export async function addNewCertificateForm(data: FormData) {
@@ -32,16 +36,37 @@ export async function addNewCertificateForm(data: FormData) {
     company,
     main_technology: mainTechnology,
     issue_date: issueDate,
+    image,
   } = result.data
 
   try {
+    const sourceFile = Buffer.from(await image.arrayBuffer())
+    const fileType = image.type
+    const bucket = process.env.MINIO_BUCKET!
+    const destinationObject = createSlug(title)
+
+    const metaData = {
+      'Content-Type': fileType,
+    }
+
+    await minio.putObject(
+      bucket,
+      destinationObject,
+      sourceFile,
+      undefined,
+      metaData
+    )
+
+    const minioEndpoint = process.env.MINIO_ENDPOINT
+    const imageUrl = `https://${minioEndpoint}/${bucket}/${destinationObject}`
+
     await prisma.certificate.create({
       data: {
         title,
         slug: createSlug(title),
         company,
         mainTechnology,
-        imageUrl: '',
+        imageUrl,
         issueDate: new Date(issueDate).toISOString(),
       },
     })

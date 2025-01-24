@@ -14,15 +14,28 @@ import { useFormState } from '@/hooks/use-form-state'
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { AlertTriangle, CalendarIcon } from 'lucide-react'
-import { useState } from 'react'
+import Image from 'next/image'
+import { type ChangeEvent, useState } from 'react'
 import { addNewCertificateForm } from './action'
 
 export function AddNewCertificateForm() {
   const [{ errors, success, message }, handleSubmit, isPending] = useFormState(
-    addNewCertificateForm
+    addNewCertificateForm,
+    () => {
+      setPreviewImage(null)
+      setDate(undefined)
+    }
   )
 
   const [date, setDate] = useState<Date>()
+  const [previewImage, setPreviewImage] = useState<string | null>(null)
+
+  function handleOnChangeImage(event: ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files) return
+
+    const imageURL = URL.createObjectURL(event.target.files[0])
+    setPreviewImage(imageURL)
+  }
 
   return (
     <>
@@ -34,6 +47,35 @@ export function AddNewCertificateForm() {
             <AlertDescription>{message}</AlertDescription>
           </Alert>
         )}
+
+        <label
+          htmlFor="image"
+          className="aspect-video cursor-pointer content-center rounded-md border border-neutral-800 text-center text-neutral-400"
+        >
+          {previewImage ? (
+            <Image
+              src={previewImage}
+              alt=""
+              width={800}
+              height={800}
+              className="aspect-video w-full rounded-md object-cover"
+            />
+          ) : (
+            <span>Upload an image</span>
+          )}
+        </label>
+        {errors?.image && (
+          <p className="-mt-5 font-medium text-red-500 text-xs">
+            {errors.image[0]}
+          </p>
+        )}
+        <input
+          type="file"
+          name="image"
+          id="image"
+          className="sr-only"
+          onChange={handleOnChangeImage}
+        />
 
         <div className="space-y-1">
           <Label htmlFor="title">Title</Label>
@@ -113,7 +155,7 @@ export function AddNewCertificateForm() {
           )}
         </div>
 
-        <Button type="submit" className="mt-5 w-full" disabled={isPending}>
+        <Button type="submit" className="mt-5 w-full" isPending={isPending}>
           Add certificate
         </Button>
       </form>
