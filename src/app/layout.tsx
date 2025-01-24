@@ -6,6 +6,7 @@ import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Providers } from './providers'
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jet-brains-mono',
@@ -42,15 +43,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetBrainsMono.variable} ${inter.variable} bg-zinc-950 font-inter text-zinc-50 antialiased`}
+        className={`${jetBrainsMono.variable} ${inter.variable} bg-zinc-200 font-inter text-zinc-950 antialiased dark:bg-zinc-900 dark:text-zinc-50`}
       >
-        <Header />
-
-        {children}
-
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
 
         <Toaster position="top-right" richColors expand />
         <Analytics />

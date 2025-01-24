@@ -35,7 +35,7 @@ export function WaysToContactMe() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <WhatsAppIcon className="size-5 fill-black" /> Whatsapp
+              <WhatsAppIcon /> Whatsapp
             </Link>
           </Button>
 
@@ -46,7 +46,7 @@ export function WaysToContactMe() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LinkedInIcon className="size-5 fill-black" /> Linkedin
+              <LinkedInIcon /> Linkedin
             </Link>
           </Button>
 
@@ -56,38 +56,46 @@ export function WaysToContactMe() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Mail className="size-5" /> E-mail
+              <Mail /> E-mail
             </Link>
           </Button>
         </div>
 
         <div>
           <div className="flex items-center justify-center gap-2 md:justify-start">
-            <span className="text-zinc-300">viniciusmotta0806@gmail.com</span>
+            <span className="text-zinc-600 dark:text-zinc-300">
+              viniciusmotta0806@gmail.com
+            </span>
             <div>
               <Button
                 variant="ghost"
+                size="icon"
+                className="[&_svg]:size-4"
                 onClick={() => handleCopyContact('email')}
               >
                 {emailCopied ? (
-                  <Check className="size-4 text-emerald-500" />
+                  <Check className="text-emerald-500" />
                 ) : (
-                  <Copy className="size-4" />
+                  <Copy />
                 )}
               </Button>
             </div>
           </div>
           <div className="flex items-center justify-center gap-2 md:justify-start">
-            <span className="text-zinc-300">+55 11 98797-7427</span>
+            <span className="text-zinc-600 dark:text-zinc-300">
+              +55 11 98797-7427
+            </span>
             <div>
               <Button
                 variant="ghost"
+                size="icon"
+                className="[&_svg]:size-4"
                 onClick={() => handleCopyContact('number')}
               >
                 {numberCopied ? (
-                  <Check className="size-4 text-emerald-500" />
+                  <Check className="text-emerald-500" />
                 ) : (
-                  <Copy className="size-4" />
+                  <Copy />
                 )}
               </Button>
             </div>

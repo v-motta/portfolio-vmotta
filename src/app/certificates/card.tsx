@@ -22,7 +22,7 @@ export function CertificateCard({
   onDelete,
 }: CardCertificateProps) {
   return (
-    <div className="relative flex flex-col gap-5 rounded-2xl border border-neutral-400 p-5">
+    <div className="relative flex flex-col gap-4 rounded-2xl border border-neutral-400 p-4">
       {onDelete && (
         <Button
           size="icon"
@@ -41,7 +41,7 @@ export function CertificateCard({
         height={1000}
         quality={100}
         priority
-        className="aspect-video rounded-lg object-cover object-center"
+        className="aspect-video rounded-lg border border-neutral-400 object-cover object-center"
       />
       <div className="text-center lg:text-start">
         <h1 className="mb-2 line-clamp-2 h-14 font-bold font-mono text-xl">

@@ -38,7 +38,7 @@ export function Technologies() {
   }
 
   return (
-    <section id="technologies" className="flex flex-col gap-8 py-8 md:py-16">
+    <section id="technologies" className="flex flex-col gap-5 py-6 md:py-16">
       <h1 className="section-title">Technologies</h1>
 
       <Tabs defaultValue="frontend" className="mx-auto w-full md:w-2/5">

@@ -17,7 +17,7 @@ export function Main() {
           </h2>
         </div>
 
-        <p className="text-balance text-zinc-400">
+        <p className="text-balance text-zinc-700 dark:text-zinc-400">
           Currently graduating a degree in Computer Science, with professional
           experience in TypeScript, React, Angular, Bootstrap, Go, Flutter, and
           DevOps.
@@ -32,7 +32,7 @@ export function Main() {
           height={384}
           quality={100}
           alt="A picture of myself"
-          className="aspect-square w-56 rounded-xl object-cover shadow-[-10px_-10px] shadow-blue-800 lg:w-auto"
+          className="aspect-square w-56 rounded-xl object-cover shadow-[0px_0px_20px] shadow-zinc-400 lg:w-auto dark:shadow-zinc-600"
         />
       </div>
 

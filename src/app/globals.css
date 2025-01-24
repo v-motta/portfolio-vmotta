@@ -4,7 +4,7 @@
 
 @layer components {
   .concat-variable {
-    @apply text-blue-500/80 before:text-bracket text-nowrap before:content-['${'] after:text-bracket after:content-['}'];
+    @apply text-blue-500 before:text-bracket text-nowrap before:content-["${"] after:text-bracket after:content-["}"];
   }
 
   .section-title {

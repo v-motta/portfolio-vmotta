@@ -10,17 +10,19 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-50/90',
+        default:
+          'bg-neutral-900 hover:bg-neutral-800/90 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/80',
         destructive: 'bg-red-900 text-neutral-50 hover:bg-red-900/90',
         outline:
-          'border border-neutral-400 bg-neutral-950 hover:bg-neutral-800 hover:text-neutral-50',
-        secondary: 'bg-neutral-800 text-neutral-50 hover:bg-neutral-800/80',
-        ghost: 'hover:bg-neutral-800 hover:text-neutral-50',
+          'border border-neutral-400 bg-transparent hover:bg-neutral-300 dark:hover:bg-neutral-800',
+        secondary: 'bg-neutral-800 text-neutral-50 hover:bg-neutral-800/90',
+        ghost:
+          'hover:bg-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-50',
         link: 'text-neutral-50 underline-offset-4 hover:underline',
       },
       size: {
         default: 'h-10 px-4 py-2',
-        icon: 'h-10 w-10 aspect-square',
+        icon: 'h-10 w-10 aspect-square [&_svg]:size-6',
       },
     },
     defaultVariants: {

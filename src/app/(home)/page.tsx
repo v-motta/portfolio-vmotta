@@ -24,7 +24,7 @@ export default function HomePage() {
 
       <Separator />
 
-      <div className="py-8 *:mx-auto md:py-16">
+      <div className="py-6 *:mx-auto md:py-16">
         <ContactForm />
       </div>
     </main>
