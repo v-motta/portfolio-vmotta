@@ -22,7 +22,7 @@ export function CertificateCard({
   onDelete,
 }: CardCertificateProps) {
   return (
-    <div className="relative flex flex-col gap-5 rounded-2xl border border-zinc-200 p-5">
+    <div className="relative flex flex-col gap-5 rounded-2xl border border-neutral-400 p-5">
       {onDelete && (
         <Button
           size="icon"
