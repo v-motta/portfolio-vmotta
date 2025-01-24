@@ -41,6 +41,7 @@ export async function addNewCertificateForm(data: FormData) {
         slug: createSlug(title),
         company,
         mainTechnology,
+        imageUrl: '',
         issueDate: new Date(issueDate).toISOString(),
       },
     })
