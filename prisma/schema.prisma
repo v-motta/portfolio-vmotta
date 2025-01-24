@@ -36,7 +36,8 @@ model Project {
   description String
   slug        String   @unique
   github      String
-  topProject Boolean  @default(false) @map("top_project")
+  imageUrl    String   @map("image_url")
+  topProject  Boolean  @default(false) @map("top_project")
   createdAt   DateTime @default(now()) @map("created_at")
 
   technologies ProjectsTechnologies[]
