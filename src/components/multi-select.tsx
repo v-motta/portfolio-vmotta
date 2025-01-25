@@ -151,7 +151,7 @@ export const MultiSelect = React.forwardRef<
             {selectedValues.length > 0 ? (
               <div className="flex w-full items-center justify-between">
                 <div className="flex flex-wrap items-center">
-                  {selectedValues.slice(0, maxCount).map(value => {
+                  {selectedValues.map(value => {
                     const option = options.find(o => o.value === value)
                     const IconComponent = option?.icon
                     return (
@@ -159,43 +159,23 @@ export const MultiSelect = React.forwardRef<
                         key={value}
                         className={multiSelectVariants({ variant })}
                         style={{ animationDuration: `${animation}s` }}
+                        onClick={event => {
+                          event.stopPropagation()
+                          toggleOption(value)
+                        }}
                       >
                         {IconComponent && (
                           <IconComponent className="mr-2 h-4 w-4" />
                         )}
                         {option?.label}
-                        <XCircle
-                          className="ml-2 h-4 w-4 cursor-pointer"
-                          onClick={event => {
-                            event.stopPropagation()
-                            toggleOption(value)
-                          }}
-                        />
+                        <XCircle className="ml-2 h-4 w-4 cursor-pointer" />
                       </Badge>
                     )
                   })}
-                  {selectedValues.length > maxCount && (
-                    <Badge
-                      className={cn(
-                        'border-zinc-50/5 bg-transparent text-zinc-50 hover:bg-transparent',
-                        multiSelectVariants({ variant })
-                      )}
-                      style={{ animationDuration: `${animation}s` }}
-                    >
-                      {`+ ${selectedValues.length - maxCount} more`}
-                      <XCircle
-                        className="ml-2 h-4 w-4 cursor-pointer"
-                        onClick={event => {
-                          event.stopPropagation()
-                          clearExtraOptions()
-                        }}
-                      />
-                    </Badge>
-                  )}
                 </div>
                 <div className="flex items-center justify-between">
                   <XIcon
-                    className="mx-2 h-4 cursor-pointer text-zinc-400"
+                    className="mx-2 h-4 cursor-pointer text-neutral-400"
                     onClick={event => {
                       event.stopPropagation()
                       handleClear()
@@ -205,15 +185,15 @@ export const MultiSelect = React.forwardRef<
                     orientation="vertical"
                     className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                   />
-                  <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-400" />
+                  <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
                 </div>
               </div>
             ) : (
               <div className="mx-auto flex w-full items-center justify-between">
-                <span className="mx-3 text-sm text-zinc-400">
+                <span className="mx-3 text-neutral-400 text-sm">
                   {placeholder}
                 </span>
-                <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-400" />
+                <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
               </div>
             )}
           </Button>
@@ -267,7 +247,7 @@ export const MultiSelect = React.forwardRef<
                         <CheckIcon className="h-4 w-4" />
                       </div>
                       {option.icon && (
-                        <option.icon className="mr-2 h-4 w-4 text-zinc-400" />
+                        <option.icon className="mr-2 h-4 w-4 text-neutral-400" />
                       )}
                       <span>{option.label}</span>
                     </CommandItem>
