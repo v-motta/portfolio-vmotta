@@ -8,11 +8,12 @@ export interface CardCertificateProps {
   certificate: {
     id: string
     title: string
-    slug: string
     company: string
-    mainTechnology: string
+    slug: string
+    issueDate: Date
     imageUrl: string
-    issueDate: Date | string
+    createdAt: Date
+    technologyId: string
   }
   onDelete?: (id: string) => void
 }

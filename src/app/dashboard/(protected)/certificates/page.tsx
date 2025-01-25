@@ -11,7 +11,7 @@ export default async function CertificatesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col-reverse items-center justify-between gap-4 md:flex-row">
         <h1 className="font-jet-brains-mono text-xl">
           Certificates:{' '}
           <span className="concat-variable">{allCertificates.length}</span>

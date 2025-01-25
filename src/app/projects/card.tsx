@@ -11,8 +11,8 @@ export interface CardProjectProps {
     subtitle: string
     description: string
     slug: string
-    github: string
-    imageUrl: string
+    github: string | null
+    imagesUrl: string[]
     topProject: boolean
     createdAt: Date
   }
