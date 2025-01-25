@@ -10,8 +10,17 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useFormState } from '@/hooks/use-form-state'
+import { getAllTechnologies } from '@/http/get-all-technologies'
 import { cn } from '@/lib/utils'
+import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { AlertTriangle, CalendarIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -27,6 +36,12 @@ export function AddNewCertificateForm() {
     }
   )
 
+  const { data: technologies, isLoading } = useQuery({
+    queryKey: ['technologies'],
+    queryFn: getAllTechnologies,
+    staleTime: 1000 * 60 * 60 * 24,
+  })
+
   const [date, setDate] = useState<Date>()
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 
@@ -39,7 +54,7 @@ export function AddNewCertificateForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
         {success === false && message && (
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
@@ -50,7 +65,7 @@ export function AddNewCertificateForm() {
 
         <label
           htmlFor="image"
-          className="aspect-video cursor-pointer content-center rounded-md border border-neutral-800 text-center text-neutral-400"
+          className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-800 dark:text-zinc-400"
         >
           {previewImage ? (
             <Image
@@ -104,12 +119,18 @@ export function AddNewCertificateForm() {
 
         <div className="space-y-1">
           <Label htmlFor="main_technology">Main Technology</Label>
-          <Input
-            id="main_technology"
-            type="text"
-            name="main_technology"
-            placeholder="Javascript"
-          />
+          <Select key={String(technologies)} name="main_technology">
+            <SelectTrigger disabled={isLoading}>
+              <SelectValue placeholder="Select a technology" />
+            </SelectTrigger>
+            <SelectContent>
+              {technologies?.map(({ id, name }) => (
+                <SelectItem key={id} value={id}>
+                  {name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           {errors?.main_technology && (
             <p className="font-medium text-red-500 text-xs">
               {errors.main_technology[0]}
@@ -129,17 +150,17 @@ export function AddNewCertificateForm() {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                variant={'outline'}
+                variant="outline"
                 className={cn(
                   'flex w-full justify-start text-left font-normal',
-                  !date && 'text-neutral-400'
+                  !date && 'text-zinc-600 dark:text-zinc-400'
                 )}
               >
                 <CalendarIcon />
                 {date ? format(date, 'PPP') : <span>Pick a date</span>}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
+            <PopoverContent className="w-auto p-0 text-zinc-600 dark:text-zinc-400">
               <Calendar
                 mode="single"
                 selected={date}
@@ -155,7 +176,7 @@ export function AddNewCertificateForm() {
           )}
         </div>
 
-        <Button type="submit" className="mt-5 w-full" isPending={isPending}>
+        <Button type="submit" className="mt-auto w-full" isPending={isPending}>
           Add certificate
         </Button>
       </form>

@@ -12,7 +12,6 @@ const addNewCertificateFormSchema = z.object({
     .string()
     .min(1, { message: 'Main technology is required' }),
   issue_date: z.string().min(1, { message: 'Issue date is required' }),
-  // validate if is filled in the form
   image: z.any().refine(value => value.size > 0, {
     message: 'Image is required',
   }),
@@ -65,7 +64,7 @@ export async function addNewCertificateForm(data: FormData) {
         title,
         slug: createSlug(title),
         company,
-        mainTechnology,
+        mainTechnology: { connect: { id: mainTechnology } },
         imageUrl,
         issueDate: new Date(issueDate).toISOString(),
       },
