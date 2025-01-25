@@ -58,7 +58,7 @@ export default function LoginPage() {
                 variant="outline"
                 size="icon"
                 type="button"
-                className="border-zinc-400 dark:border-zinc-700"
+                className="border-zinc-400 dark:border-zinc-800"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <EyeClosed /> : <Eye />}

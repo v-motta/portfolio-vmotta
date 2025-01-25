@@ -10,9 +10,7 @@ export default function AddNewCertificateSheet() {
           <SheetTitle>Add new certificate</SheetTitle>
         </SheetHeader>
 
-        <div className="py-4">
-          <AddNewCertificateForm />
-        </div>
+        <AddNewCertificateForm />
       </InterceptedSheetContent>
     </Sheet>
   )
