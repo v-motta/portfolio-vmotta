@@ -1,11 +1,5 @@
 import { type VariantProps, cva } from 'class-variance-authority'
-import {
-  CheckIcon,
-  ChevronDown,
-  WandSparkles,
-  XCircle,
-  XIcon,
-} from 'lucide-react'
+import { CheckIcon, ChevronDown, XCircle, XIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -33,11 +27,11 @@ const multiSelectVariants = cva(
     variants: {
       variant: {
         default:
-          'border-foreground/10 text-foreground bg-card hover:bg-card/80',
+          'border-zinc-50/10 text-zinc-50 bg-zinc-800 hover:bg-zinc-800/80',
         secondary:
-          'border-foreground/10 bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          'border-zinc-50/10 bg-secondary text-zinc-50 hover:bg-secondary/80',
         destructive:
-          'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
+          'border-transparent bg-red-500 text-zinc-50 hover:bg-red-500/80',
         inverted: 'inverted',
       },
     },
@@ -78,7 +72,7 @@ export const MultiSelect = React.forwardRef<
       defaultValue = [],
       placeholder = 'Select options',
       animation = 0,
-      maxCount = 3,
+      maxCount = 8,
       modalPopover = false,
       asChild = false,
       className,
@@ -89,7 +83,6 @@ export const MultiSelect = React.forwardRef<
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue)
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
-    const [isAnimating, setIsAnimating] = React.useState(false)
 
     const handleInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
@@ -148,8 +141,10 @@ export const MultiSelect = React.forwardRef<
             ref={ref}
             {...props}
             onClick={handleTogglePopover}
+            variant="outline"
             className={cn(
-              'flex h-auto min-h-10 w-full items-center justify-between rounded-md border bg-inherit p-1 hover:bg-inherit [&_svg]:pointer-events-auto',
+              'flex h-auto min-h-10 w-full items-center justify-between rounded-md border p-1 [&_svg]:pointer-events-auto',
+              'border-zinc-400 dark:border-zinc-700',
               className
             )}
           >
@@ -162,10 +157,7 @@ export const MultiSelect = React.forwardRef<
                     return (
                       <Badge
                         key={value}
-                        className={cn(
-                          isAnimating ? 'animate-bounce' : '',
-                          multiSelectVariants({ variant })
-                        )}
+                        className={multiSelectVariants({ variant })}
                         style={{ animationDuration: `${animation}s` }}
                       >
                         {IconComponent && (
@@ -185,8 +177,7 @@ export const MultiSelect = React.forwardRef<
                   {selectedValues.length > maxCount && (
                     <Badge
                       className={cn(
-                        'border-foreground/1 bg-transparent text-foreground hover:bg-transparent',
-                        isAnimating ? 'animate-bounce' : '',
+                        'border-zinc-50/5 bg-transparent text-zinc-50 hover:bg-transparent',
                         multiSelectVariants({ variant })
                       )}
                       style={{ animationDuration: `${animation}s` }}
@@ -204,7 +195,7 @@ export const MultiSelect = React.forwardRef<
                 </div>
                 <div className="flex items-center justify-between">
                   <XIcon
-                    className="mx-2 h-4 cursor-pointer text-muted-foreground"
+                    className="mx-2 h-4 cursor-pointer text-zinc-400"
                     onClick={event => {
                       event.stopPropagation()
                       handleClear()
@@ -212,17 +203,17 @@ export const MultiSelect = React.forwardRef<
                   />
                   <Separator
                     orientation="vertical"
-                    className="flex h-full min-h-6"
+                    className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                   />
-                  <ChevronDown className="mx-2 h-4 cursor-pointer text-muted-foreground" />
+                  <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-400" />
                 </div>
               </div>
             ) : (
               <div className="mx-auto flex w-full items-center justify-between">
-                <span className="mx-3 text-muted-foreground text-sm">
+                <span className="mx-3 text-sm text-zinc-400">
                   {placeholder}
                 </span>
-                <ChevronDown className="mx-2 h-4 cursor-pointer text-muted-foreground" />
+                <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-400" />
               </div>
             )}
           </Button>
@@ -247,9 +238,9 @@ export const MultiSelect = React.forwardRef<
                 >
                   <div
                     className={cn(
-                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                       selectedValues.length === options.length
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-200 dark:text-zinc-900'
                         : 'opacity-50 [&_svg]:invisible'
                     )}
                   >
@@ -267,16 +258,16 @@ export const MultiSelect = React.forwardRef<
                     >
                       <div
                         className={cn(
-                          'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                          'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                           isSelected
-                            ? 'bg-primary text-primary-foreground'
+                            ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-200 dark:text-zinc-900'
                             : 'opacity-50 [&_svg]:invisible'
                         )}
                       >
                         <CheckIcon className="h-4 w-4" />
                       </div>
                       {option.icon && (
-                        <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <option.icon className="mr-2 h-4 w-4 text-zinc-400" />
                       )}
                       <span>{option.label}</span>
                     </CommandItem>
@@ -296,7 +287,7 @@ export const MultiSelect = React.forwardRef<
                       </CommandItem>
                       <Separator
                         orientation="vertical"
-                        className="flex h-full min-h-6"
+                        className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                       />
                     </>
                   )}
@@ -311,15 +302,6 @@ export const MultiSelect = React.forwardRef<
             </CommandList>
           </Command>
         </PopoverContent>
-        {animation > 0 && selectedValues.length > 0 && (
-          <WandSparkles
-            className={cn(
-              'my-2 h-3 w-3 cursor-pointer bg-background text-foreground',
-              isAnimating ? '' : 'text-muted-foreground'
-            )}
-            onClick={() => setIsAnimating(!isAnimating)}
-          />
-        )}
       </Popover>
     )
   }
