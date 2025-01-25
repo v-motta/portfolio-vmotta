@@ -22,7 +22,7 @@ import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
 const multiSelectVariants = cva(
-  'm-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300',
+  'm-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300',
   {
     variants: {
       variant: {
@@ -144,7 +144,7 @@ export const MultiSelect = React.forwardRef<
             variant="outline"
             className={cn(
               'flex h-auto min-h-10 w-full items-center justify-between rounded-md border p-1 [&_svg]:pointer-events-auto',
-              'border-zinc-400 dark:border-zinc-700',
+              'border-zinc-400 dark:border-zinc-800',
               className
             )}
           >
@@ -220,7 +220,7 @@ export const MultiSelect = React.forwardRef<
                     className={cn(
                       'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                       selectedValues.length === options.length
-                        ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-200 dark:text-zinc-900'
+                        ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-400 dark:text-zinc-900'
                         : 'opacity-50 [&_svg]:invisible'
                     )}
                   >
@@ -240,7 +240,7 @@ export const MultiSelect = React.forwardRef<
                         className={cn(
                           'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                           isSelected
-                            ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-200 dark:text-zinc-900'
+                            ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-400 dark:text-zinc-900'
                             : 'opacity-50 [&_svg]:invisible'
                         )}
                       >
