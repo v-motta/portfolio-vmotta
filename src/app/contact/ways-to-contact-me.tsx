@@ -63,7 +63,7 @@ export function WaysToContactMe() {
 
         <div>
           <div className="flex items-center justify-center gap-2 md:justify-start">
-            <span className="text-zinc-600 dark:text-zinc-300">
+            <span className="text-zinc-600 dark:text-zinc-400">
               viniciusmotta0806@gmail.com
             </span>
             <div>
@@ -82,7 +82,7 @@ export function WaysToContactMe() {
             </div>
           </div>
           <div className="flex items-center justify-center gap-2 md:justify-start">
-            <span className="text-zinc-600 dark:text-zinc-300">
+            <span className="text-zinc-600 dark:text-zinc-400">
               +55 11 98797-7427
             </span>
             <div>
