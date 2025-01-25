@@ -17,14 +17,16 @@ model User {
 }
 
 model Certificate {
-  id             String   @id @default(uuid())
-  title          String
-  slug           String
-  company        String
-  mainTechnology String   @map("main_technology")
-  issueDate      DateTime @map("issue_date")
-  imageUrl       String   @map("image_url")
-  createdAt      DateTime @default(now()) @map("created_at")
+  id        String   @id @default(uuid())
+  title     String
+  slug      String
+  company   String
+  issueDate DateTime @map("issue_date")
+  imageUrl  String   @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  mainTechnology Technology @relation(fields: [technologyId], references: [id])
+  technologyId String @map("technology_id")
 
   @@map("certificates")
 }
@@ -35,32 +37,22 @@ model Project {
   subtitle    String
   description String
   slug        String   @unique
-  github      String
-  imageUrl    String   @map("image_url")
+  github      String?
+  imagesUrl   String[] @map("images_url")
   topProject  Boolean  @default(false) @map("top_project")
   createdAt   DateTime @default(now()) @map("created_at")
 
-  technologies ProjectsTechnologies[]
-
+  technologies Technology[]
   @@map("projects")
 }
 
 model Technology {
-  id   Int @id @default(autoincrement())
+  id   String @id @default(uuid())
   name String @unique
+  createdAt DateTime @default(now()) @map("created_at")
 
-  projects ProjectsTechnologies[]
+  certificates Certificate[]
+  projects Project[]
 
   @@map("technologies")
-}
-
-model ProjectsTechnologies {
-  technologyId Int
-  projectId    String
-
-  project      Project    @relation(fields: [projectId], references: [id])
-  technology   Technology @relation(fields: [technologyId], references: [id])
-
-  @@id([projectId, technologyId])
-  @@map("projects_technologies")
 }
