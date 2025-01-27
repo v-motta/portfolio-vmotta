@@ -76,7 +76,7 @@ export function CertificateCard({
         </div>
       </DialogTrigger>
       <DialogOverlay />
-      <DialogContent className="max-w-[60vw]">
+      <DialogContent className="max-w-[90vw] xl:max-w-[60vw]">
         {certificate && (
           <>
             <DialogTitle>{certificate.title}</DialogTitle>
