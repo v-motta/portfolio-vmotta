@@ -1,6 +1,6 @@
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { AddNewCertificateForm } from '../../add-new/certificate-form'
+import { CertificateForm } from '../../add-new/certificate-form'
 
 export default function AddNewCertificateSheet() {
   return (
@@ -10,7 +10,7 @@ export default function AddNewCertificateSheet() {
           <SheetTitle>Add new certificate</SheetTitle>
         </SheetHeader>
 
-        <AddNewCertificateForm />
+        <CertificateForm />
       </InterceptedSheetContent>
     </Sheet>
   )
