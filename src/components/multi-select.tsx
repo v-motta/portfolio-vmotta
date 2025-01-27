@@ -163,7 +163,7 @@ export const MultiSelect = React.forwardRef<
                 </div>
                 <div className="flex items-center justify-between">
                   <XIcon
-                    className="mx-2 h-4 cursor-pointer text-neutral-400"
+                    className="mx-2 h-4 cursor-pointer text-zinc-500 dark:text-zinc-400"
                     onClick={event => {
                       event.stopPropagation()
                       handleClear()
@@ -173,15 +173,15 @@ export const MultiSelect = React.forwardRef<
                     orientation="vertical"
                     className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                   />
-                  <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
+                  <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-500 dark:text-zinc-400" />
                 </div>
               </div>
             ) : (
               <div className="mx-auto flex w-full items-center justify-between">
-                <span className="mx-2 text-neutral-400 text-sm">
+                <span className="mx-2 text-sm text-zinc-500 dark:text-zinc-400">
                   {placeholder}
                 </span>
-                <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
+                <ChevronDown className="mx-2 h-4 cursor-pointer text-zinc-500 dark:text-zinc-400" />
               </div>
             )}
           </Button>
