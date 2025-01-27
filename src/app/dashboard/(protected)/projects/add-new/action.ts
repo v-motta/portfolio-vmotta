@@ -49,8 +49,6 @@ export async function addNewProjectForm(data: FormData) {
 
   const slug = createSlug(title)
 
-  console.log(topProject === 'on')
-
   try {
     await prisma.project.upsert({
       create: {
