@@ -1,4 +1,4 @@
-import { AddNewCertificateForm } from './add-new-certificate-form'
+import { AddNewCertificateForm } from './certificate-form'
 
 export default async function AddNewCertificatePage() {
   return (
