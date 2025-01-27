@@ -29,7 +29,7 @@ import Image from 'next/image'
 import { type ChangeEvent, useState } from 'react'
 import { addNewCertificateForm } from './action'
 
-export function AddNewCertificateForm() {
+export function CertificateForm() {
   const [{ errors, success, message }, handleSubmit, isPending] = useFormState(
     async (data: FormData) => {
       date && data.append('issue_date', date?.toLocaleDateString('en-CA'))
