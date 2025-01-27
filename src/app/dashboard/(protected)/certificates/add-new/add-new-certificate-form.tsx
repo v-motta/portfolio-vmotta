@@ -1,5 +1,6 @@
 'use client'
 
+import { iconsNode } from '@/components/icons/icon-node'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -19,6 +20,7 @@ import {
 } from '@/components/ui/select'
 import { useFormState } from '@/hooks/use-form-state'
 import { getAllTechnologies } from '@/http/get-all-technologies'
+import { getCleanText } from '@/lib/clean-text'
 import { cn } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
@@ -126,7 +128,10 @@ export function AddNewCertificateForm() {
             <SelectContent>
               {technologies?.map(({ id, name }) => (
                 <SelectItem key={id} value={id}>
-                  {name}
+                  <div className="flex items-center gap-5">
+                    {iconsNode[getCleanText(name)]}
+                    <span>{name}</span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
