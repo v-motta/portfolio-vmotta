@@ -1,4 +1,4 @@
-import { ProjectsForm } from './projects-form'
+import { ProjectsForm } from '../projects-form'
 
 export default function AddNewProjectPage() {
   return (

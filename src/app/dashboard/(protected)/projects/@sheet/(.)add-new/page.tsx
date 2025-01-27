@@ -1,6 +1,6 @@
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { ProjectsForm } from '../../add-new/projects-form'
+import { ProjectsForm } from '../../projects-form'
 
 export default function AddNewProjectSheet() {
   return (
