@@ -19,7 +19,9 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
+import { getCleanText } from '@/lib/clean-text'
 import { cn } from '@/lib/utils'
+import { iconsNode } from './icons/icon-node'
 
 const multiSelectVariants = cva(
   'm-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300',
@@ -47,14 +49,11 @@ interface MultiSelectProps
   options: {
     label: string
     value: string
-    icon?: React.ComponentType<{ className?: string }>
   }[]
 
   onValueChange: (value: string[]) => void
   defaultValue?: string[]
   placeholder?: string
-  animation?: number
-  maxCount?: number
   modalPopover?: boolean
   asChild?: boolean
   className?: string
@@ -71,8 +70,6 @@ export const MultiSelect = React.forwardRef<
       variant,
       defaultValue = [],
       placeholder = 'Select options',
-      animation = 0,
-      maxCount = 8,
       modalPopover = false,
       asChild = false,
       className,
@@ -114,12 +111,6 @@ export const MultiSelect = React.forwardRef<
       setIsPopoverOpen(prev => !prev)
     }
 
-    const clearExtraOptions = () => {
-      const newSelectedValues = selectedValues.slice(0, maxCount)
-      setSelectedValues(newSelectedValues)
-      onValueChange(newSelectedValues)
-    }
-
     const toggleAll = () => {
       if (selectedValues.length === options.length) {
         handleClear()
@@ -153,22 +144,19 @@ export const MultiSelect = React.forwardRef<
                 <div className="flex flex-wrap items-center">
                   {selectedValues.map(value => {
                     const option = options.find(o => o.value === value)
-                    const IconComponent = option?.icon
+
                     return (
                       <Badge
                         key={value}
                         className={multiSelectVariants({ variant })}
-                        style={{ animationDuration: `${animation}s` }}
                         onClick={event => {
                           event.stopPropagation()
                           toggleOption(value)
                         }}
                       >
-                        {IconComponent && (
-                          <IconComponent className="mr-2 h-4 w-4" />
-                        )}
-                        {option?.label}
-                        <XCircle className="ml-2 h-4 w-4 cursor-pointer" />
+                        {option && iconsNode[getCleanText(option?.label)]}
+                        <span className="mx-2">{option?.label}</span>
+                        <XCircle className="h-4 w-4 cursor-pointer" />
                       </Badge>
                     )
                   })}
@@ -183,7 +171,7 @@ export const MultiSelect = React.forwardRef<
                   />
                   <Separator
                     orientation="vertical"
-                    className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
+                    className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-800"
                   />
                   <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
                 </div>
@@ -220,7 +208,7 @@ export const MultiSelect = React.forwardRef<
                     className={cn(
                       'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                       selectedValues.length === options.length
-                        ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-400 dark:text-zinc-900'
+                        ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900'
                         : 'opacity-50 [&_svg]:invisible'
                     )}
                   >
@@ -240,15 +228,13 @@ export const MultiSelect = React.forwardRef<
                         className={cn(
                           'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-zinc-900 dark:border-zinc-50',
                           isSelected
-                            ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-400 dark:text-zinc-900'
+                            ? 'bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-900'
                             : 'opacity-50 [&_svg]:invisible'
                         )}
                       >
                         <CheckIcon className="h-4 w-4" />
                       </div>
-                      {option.icon && (
-                        <option.icon className="mr-2 h-4 w-4 text-neutral-400" />
-                      )}
+                      {iconsNode[getCleanText(option.label)]}
                       <span>{option.label}</span>
                     </CommandItem>
                   )
@@ -267,7 +253,7 @@ export const MultiSelect = React.forwardRef<
                       </CommandItem>
                       <Separator
                         orientation="vertical"
-                        className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
+                        className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-800"
                       />
                     </>
                   )}
