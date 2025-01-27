@@ -121,6 +121,21 @@ export function CertificateForm() {
       </div>
 
       <div className="space-y-1">
+        <Label htmlFor="hour_duration">Hour duration</Label>
+        <Input
+          id="hour_duration"
+          type="number"
+          name="hour_duration"
+          placeholder="8"
+        />
+        {errors?.hour_duration && (
+          <p className="font-medium text-red-500 text-xs">
+            {errors.hour_duration[0]}
+          </p>
+        )}
+      </div>
+
+      <div className="space-y-1">
         <Label htmlFor="main_technology">Main Technology</Label>
         <Select key={String(technologies)} name="main_technology">
           <SelectTrigger disabled={isLoading}>

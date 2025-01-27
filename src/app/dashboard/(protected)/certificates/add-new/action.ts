@@ -8,6 +8,7 @@ import { z } from 'zod'
 const addNewCertificateFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),
   company: z.string().min(1, { message: 'Company is required' }),
+  hour_duration: z.number().min(1, { message: 'Hour duration is required' }),
   main_technology: z
     .string()
     .min(1, { message: 'Main technology is required' }),
@@ -33,6 +34,7 @@ export async function addNewCertificateForm(data: FormData) {
   const {
     title,
     company,
+    hour_duration: hourDuration,
     main_technology: mainTechnology,
     issue_date: issueDate,
     image,
@@ -64,6 +66,7 @@ export async function addNewCertificateForm(data: FormData) {
         title,
         slug: createSlug(title),
         company,
+        hourDuration,
         mainTechnology: { connect: { id: mainTechnology } },
         imageUrl,
         issueDate: new Date(issueDate).toISOString(),
