@@ -46,11 +46,13 @@ export function ProjectCard({ project }: CardProjectProps) {
           <Link href={`/projects/${project.slug}`}>Read more</Link>
         </Button>
 
-        <Button variant="outline" size="icon" asChild>
-          <Link href={`/projects/${project.slug}`}>
-            <GitHubIcon />
-          </Link>
-        </Button>
+        {project.github && (
+          <Button variant="outline" size="icon" asChild>
+            <a href={project.github} target="_blank" rel="noreferrer noopener">
+              <GitHubIcon />
+            </a>
+          </Button>
+        )}
       </div>
     </div>
   )
