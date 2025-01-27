@@ -19,16 +19,17 @@ model User {
 }
 
 model Certificate {
-  id        String   @id @default(uuid())
-  title     String
-  slug      String
-  company   String
-  issueDate DateTime @map("issue_date")
-  imageUrl  String   @map("image_url")
-  createdAt DateTime @default(now()) @map("created_at")
+  id           String   @id @default(uuid())
+  title        String
+  slug         String
+  company      String
+  issueDate    DateTime @map("issue_date")
+  imageUrl     String   @map("image_url")
+  hourDuration Int      @map("hour_duration")
+  createdAt    DateTime @default(now()) @map("created_at")
 
   mainTechnology Technology @relation(fields: [technologyId], references: [id])
-  technologyId String @map("technology_id")
+  technologyId   String     @map("technology_id")
 
   @@map("certificates")
 }
@@ -45,16 +46,17 @@ model Project {
   createdAt   DateTime @default(now()) @map("created_at")
 
   technologies Technology[]
+
   @@map("projects")
 }
 
 model Technology {
-  id   String @id @default(uuid())
-  name String @unique
+  id        String   @id @default(uuid())
+  name      String   @unique
   createdAt DateTime @default(now()) @map("created_at")
 
   certificates Certificate[]
-  projects Project[]
+  projects     Project[]
 
   @@map("technologies")
 }
