@@ -31,7 +31,11 @@ import { addNewCertificateForm } from './action'
 
 export function AddNewCertificateForm() {
   const [{ errors, success, message }, handleSubmit, isPending] = useFormState(
-    addNewCertificateForm,
+    async (data: FormData) => {
+      date && data.append('issue_date', date?.toLocaleDateString('en-CA'))
+
+      return await addNewCertificateForm(data)
+    },
     () => {
       setPreviewImage(null)
       setDate(undefined)
@@ -145,13 +149,6 @@ export function AddNewCertificateForm() {
 
         <div className="space-y-1">
           <Label htmlFor="issue_date">Issue date</Label>
-          <input
-            name="issue_date"
-            type="date"
-            value={date?.toLocaleDateString('en-CA')}
-            className="hidden"
-          />
-
           <Popover>
             <PopoverTrigger asChild>
               <Button
