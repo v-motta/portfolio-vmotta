@@ -1,5 +1,5 @@
+import { isAuthenticated } from '@/auth/is-authenticated'
 import { Slash } from 'lucide-react'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
@@ -8,10 +8,8 @@ export default async function ProtectedLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookiesStore = await cookies()
-
-  const isAuthenticated = cookiesStore.get('auth')
-  if (!isAuthenticated) redirect('/dashboard/login')
+  const isLoggedIn = await isAuthenticated()
+  if (!isLoggedIn) redirect('/dashboard/login')
 
   return (
     <div className="px-6 py-4 xl:px-16 2xl:px-36">

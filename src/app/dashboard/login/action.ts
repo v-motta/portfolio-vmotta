@@ -31,7 +31,7 @@ export async function loginForm(data: FormData) {
         email,
       },
       select: {
-        id: true,
+        tokenId: true,
         password: true,
       },
     })
@@ -54,7 +54,7 @@ export async function loginForm(data: FormData) {
     }
 
     const cookiesStore = await cookies()
-    cookiesStore.set('auth', user.id)
+    cookiesStore.set('auth', user.tokenId)
   } catch (error) {
     console.error(error)
 

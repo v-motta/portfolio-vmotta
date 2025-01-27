@@ -1,14 +1,12 @@
-import { cookies } from 'next/headers'
+import { isAuthenticated } from '@/auth/is-authenticated'
 import { redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 export default async function LoginLayout({
   children,
 }: { children: ReactNode }) {
-  const cookiesStore = await cookies()
-
-  const isAuthenticated = cookiesStore.get('auth')
-  if (isAuthenticated) redirect('/dashboard')
+  const isLoggedIn = await isAuthenticated()
+  if (isLoggedIn) redirect('/dashboard')
 
   return <>{children}</>
 }
