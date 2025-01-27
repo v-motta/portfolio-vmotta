@@ -1,3 +1,4 @@
+import { Layers } from 'lucide-react'
 import type { ReactNode } from 'react'
 import {
   AWSIcon,
@@ -6,6 +7,7 @@ import {
   CypressIcon,
   DockerIcon,
   FastifyIcon,
+  FigmaIcon,
   FlaskIcon,
   GitHubIcon,
   GitIcon,
@@ -34,7 +36,9 @@ export const iconsNode: Record<string, ReactNode> = {
   cypress: <CypressIcon />,
   docker: <DockerIcon />,
   fastify: <FastifyIcon />,
+  figma: <FigmaIcon />,
   flask: <FlaskIcon />,
+  fullstack: <Layers />,
   git: <GitIcon />,
   gitea: <GiteaIcon />,
   githubactions: <GithubActionsIcon />,
@@ -42,11 +46,12 @@ export const iconsNode: Record<string, ReactNode> = {
   golang: <GoIcon />,
   javascript: <JavascriptIcon />,
   linkedin: <LinkedInIcon />,
-  next: <NextIcon />,
+  nextjs: <NextIcon />,
   nodejs: <NodeJSIcon />,
   prisma: <PrismaIcon />,
   python: <PythonIcon />,
   react: <ReactIcon />,
+  reactnative: <ReactIcon />,
   tailwind: <TailwindIcon />,
   traefik: <TraefikIcon />,
   typescript: <TypescriptIcon />,
