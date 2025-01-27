@@ -59,129 +59,125 @@ export function AddNewCertificateForm() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
-        {success === false && message && (
-          <Alert variant="destructive">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Add new certificate failed!</AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-          </Alert>
-        )}
+    <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
+      {success === false && message && (
+        <Alert variant="destructive">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>Add new certificate failed!</AlertTitle>
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
+      )}
 
-        <label
-          htmlFor="image"
-          className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-800 dark:text-zinc-400"
-        >
-          {previewImage ? (
-            <Image
-              src={previewImage}
-              alt=""
-              width={800}
-              height={800}
-              className="aspect-video w-full rounded-md object-cover"
-            />
-          ) : (
-            <span>Upload an image</span>
-          )}
-        </label>
-        {errors?.image && (
-          <p className="-mt-5 font-medium text-red-500 text-xs">
-            {errors.image[0]}
+      <label
+        htmlFor="image"
+        className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-800 dark:text-zinc-400"
+      >
+        {previewImage ? (
+          <Image
+            src={previewImage}
+            alt=""
+            width={800}
+            height={800}
+            className="aspect-video w-full rounded-md object-cover"
+          />
+        ) : (
+          <span>Upload an image</span>
+        )}
+      </label>
+      {errors?.image && (
+        <p className="-mt-5 font-medium text-red-500 text-xs">
+          {errors.image[0]}
+        </p>
+      )}
+      <input
+        type="file"
+        name="image"
+        id="image"
+        className="sr-only"
+        onChange={handleOnChangeImage}
+      />
+
+      <div className="space-y-1">
+        <Label htmlFor="title">Title</Label>
+        <Input id="title" name="title" type="text" placeholder="Clean Code" />
+        {errors?.title && (
+          <p className="font-medium text-red-500 text-xs">{errors.title[0]}</p>
+        )}
+      </div>
+
+      <div className="space-y-1">
+        <Label htmlFor="company">Company</Label>
+        <Input
+          id="company"
+          type="text"
+          name="company"
+          placeholder="Rocketseat"
+        />
+        {errors?.company && (
+          <p className="font-medium text-red-500 text-xs">
+            {errors.company[0]}
           </p>
         )}
-        <input
-          type="file"
-          name="image"
-          id="image"
-          className="sr-only"
-          onChange={handleOnChangeImage}
-        />
+      </div>
 
-        <div className="space-y-1">
-          <Label htmlFor="title">Title</Label>
-          <Input id="title" name="title" type="text" placeholder="Clean Code" />
-          {errors?.title && (
-            <p className="font-medium text-red-500 text-xs">
-              {errors.title[0]}
-            </p>
-          )}
-        </div>
+      <div className="space-y-1">
+        <Label htmlFor="main_technology">Main Technology</Label>
+        <Select key={String(technologies)} name="main_technology">
+          <SelectTrigger disabled={isLoading}>
+            <SelectValue placeholder="Select a technology" />
+          </SelectTrigger>
+          <SelectContent>
+            {technologies?.map(({ id, name }) => (
+              <SelectItem key={id} value={id}>
+                <div className="flex items-center gap-5">
+                  {iconsNode[getCleanText(name)]}
+                  <span>{name}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {errors?.main_technology && (
+          <p className="font-medium text-red-500 text-xs">
+            {errors.main_technology[0]}
+          </p>
+        )}
+      </div>
 
-        <div className="space-y-1">
-          <Label htmlFor="company">Company</Label>
-          <Input
-            id="company"
-            type="text"
-            name="company"
-            placeholder="Rocketseat"
-          />
-          {errors?.company && (
-            <p className="font-medium text-red-500 text-xs">
-              {errors.company[0]}
-            </p>
-          )}
-        </div>
+      <div className="space-y-1">
+        <Label htmlFor="issue_date">Issue date</Label>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className={cn(
+                'flex w-full justify-start text-left font-normal',
+                !date && 'text-zinc-600 dark:text-zinc-400'
+              )}
+            >
+              <CalendarIcon />
+              {date ? format(date, 'PPP') : <span>Pick a date</span>}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0 text-zinc-600 dark:text-zinc-400">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
+        {errors?.issue_date && (
+          <p className="font-medium text-red-500 text-xs">
+            {errors.issue_date[0]}
+          </p>
+        )}
+      </div>
 
-        <div className="space-y-1">
-          <Label htmlFor="main_technology">Main Technology</Label>
-          <Select key={String(technologies)} name="main_technology">
-            <SelectTrigger disabled={isLoading}>
-              <SelectValue placeholder="Select a technology" />
-            </SelectTrigger>
-            <SelectContent>
-              {technologies?.map(({ id, name }) => (
-                <SelectItem key={id} value={id}>
-                  <div className="flex items-center gap-5">
-                    {iconsNode[getCleanText(name)]}
-                    <span>{name}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors?.main_technology && (
-            <p className="font-medium text-red-500 text-xs">
-              {errors.main_technology[0]}
-            </p>
-          )}
-        </div>
-
-        <div className="space-y-1">
-          <Label htmlFor="issue_date">Issue date</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  'flex w-full justify-start text-left font-normal',
-                  !date && 'text-zinc-600 dark:text-zinc-400'
-                )}
-              >
-                <CalendarIcon />
-                {date ? format(date, 'PPP') : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 text-zinc-600 dark:text-zinc-400">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
-          {errors?.issue_date && (
-            <p className="font-medium text-red-500 text-xs">
-              {errors.issue_date[0]}
-            </p>
-          )}
-        </div>
-
-        <Button type="submit" className="mt-auto w-full" isPending={isPending}>
-          Add certificate
-        </Button>
-      </form>
-    </>
+      <Button type="submit" className="mt-auto w-full" isPending={isPending}>
+        Add certificate
+      </Button>
+    </form>
   )
 }
