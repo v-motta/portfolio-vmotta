@@ -18,7 +18,7 @@
  * - This function is useful when you need a simplified, clean version of a string.
  * - It removes everything except alphabetic characters (a-z).
  */
-export function getCleanText(text: string) {
+export function getCleanText(text: string): string {
   const cleanText = text.toLowerCase().replace(/[^a-z]/g, '')
 
   return cleanText
