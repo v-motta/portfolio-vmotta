@@ -70,7 +70,7 @@ export function CertificateForm() {
 
       <label
         htmlFor="image"
-        className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-800 dark:text-zinc-400"
+        className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-700 dark:text-zinc-400"
       >
         {previewImage ? (
           <Image
