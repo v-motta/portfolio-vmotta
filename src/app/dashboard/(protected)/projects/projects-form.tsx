@@ -17,9 +17,17 @@ import { getAllGitHubRepos } from '@/http/get-all-github-repos'
 import { getAllTechnologies } from '@/http/get-all-technologies'
 import { useQueries } from '@tanstack/react-query'
 import { useState } from 'react'
-import { addNewProjectForm } from './action'
+import { type ProjectFormSchema, addNewProjectForm } from './add-new/action'
 
-export function ProjectsForm() {
+interface ProjectsFormProps {
+  isEditing?: boolean
+  initialData?: ProjectFormSchema
+}
+
+export function ProjectsForm({
+  isEditing = false,
+  initialData,
+}: ProjectsFormProps) {
   const [
     { data: technologies, isLoading: isLoadingTechnologies },
     { data: githubRepos, isLoading: isLoadingRepos },
@@ -53,20 +61,32 @@ export function ProjectsForm() {
     }
   })
 
-  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([])
+  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>(
+    initialData?.frameworks || []
+  )
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
       <div className="space-y-1">
         <Label htmlFor="title">Title</Label>
-        <Input id="title" type="text" name="title" placeholder="My portfolio" />
+        <Input
+          id="title"
+          type="text"
+          name="title"
+          placeholder="My portfolio"
+          defaultValue={initialData?.title}
+        />
         {errors?.title && (
           <p className="font-medium text-red-500 text-xs">{errors.title[0]}</p>
         )}
       </div>
 
       <div className="flex items-center space-x-2">
-        <Checkbox id="top_project" name="top_project" />
+        <Checkbox
+          id="top_project"
+          name="top_project"
+          defaultChecked={initialData?.top_project === 'true'}
+        />
         <Label htmlFor="top_project">Is it a top project?</Label>
       </div>
 
@@ -77,6 +97,7 @@ export function ProjectsForm() {
           type="text"
           name="subtitle"
           placeholder="A portfolio for myself"
+          defaultValue={initialData?.subtitle}
         />
         {errors?.subtitle && (
           <p className="font-medium text-red-500 text-xs">
@@ -91,6 +112,7 @@ export function ProjectsForm() {
           id="description"
           name="description"
           placeholder="A portfolio that contains..."
+          defaultValue={initialData?.description}
         />
         {errors?.description && (
           <p className="font-medium text-red-500 text-xs">
@@ -110,11 +132,20 @@ export function ProjectsForm() {
           disabled={isLoadingTechnologies}
           placeholder="Select frameworks"
         />
+        {errors?.frameworks && (
+          <p className="font-medium text-red-500 text-xs">
+            {errors.frameworks[0]}
+          </p>
+        )}
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="github">GitHub repository</Label>
-        <Select key={String(githubRepos)} name="github">
+        <Select
+          key={String(githubRepos)}
+          name="github"
+          defaultValue={initialData?.github || undefined}
+        >
           <SelectTrigger disabled={isLoadingRepos}>
             <SelectValue placeholder="Select a repository" />
           </SelectTrigger>
@@ -131,8 +162,8 @@ export function ProjectsForm() {
         )}
       </div>
 
-      <Button type="submit" className="mt-auto w-full">
-        Add Project
+      <Button type="submit" className="mt-auto w-full" isPending={isPending}>
+        {isEditing ? 'Edit project' : 'Add Project'}
       </Button>
     </form>
   )
