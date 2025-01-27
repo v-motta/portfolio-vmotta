@@ -18,6 +18,8 @@ const addNewCertificateFormSchema = z.object({
   }),
 })
 
+export type CertificateFormSchema = z.infer<typeof addNewCertificateFormSchema>
+
 export async function addNewCertificateForm(data: FormData) {
   const result = addNewCertificateFormSchema.safeParse(Object.fromEntries(data))
 

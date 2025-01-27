@@ -27,9 +27,17 @@ import { format } from 'date-fns'
 import { AlertTriangle, CalendarIcon } from 'lucide-react'
 import Image from 'next/image'
 import { type ChangeEvent, useState } from 'react'
-import { addNewCertificateForm } from './action'
+import { type CertificateFormSchema, addNewCertificateForm } from './action'
 
-export function CertificateForm() {
+interface CertificateFormProps {
+  isEditing?: boolean
+  initialData?: CertificateFormSchema
+}
+
+export function CertificateForm({
+  isEditing = false,
+  initialData,
+}: CertificateFormProps) {
   const [{ errors, success, message }, handleSubmit, isPending] = useFormState(
     async (data: FormData) => {
       date && data.append('issue_date', date?.toLocaleDateString('en-CA'))
@@ -48,8 +56,12 @@ export function CertificateForm() {
     staleTime: 1000 * 60 * 60 * 24,
   })
 
-  const [date, setDate] = useState<Date>()
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
+  const [date, setDate] = useState<Date | undefined>(
+    initialData?.issue_date ? new Date(initialData.issue_date) : undefined
+  )
+  const [previewImage, setPreviewImage] = useState<string | null>(
+    initialData?.image || null
+  )
 
   function handleOnChangeImage(event: ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) return
@@ -72,9 +84,9 @@ export function CertificateForm() {
         htmlFor="image"
         className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-700 dark:text-zinc-400"
       >
-        {previewImage ? (
+        {(isEditing && initialData?.image) || previewImage ? (
           <Image
-            src={previewImage}
+            src={previewImage || initialData?.image}
             alt=""
             width={800}
             height={800}
@@ -99,7 +111,13 @@ export function CertificateForm() {
 
       <div className="space-y-1">
         <Label htmlFor="title">Title</Label>
-        <Input id="title" name="title" type="text" placeholder="Clean Code" />
+        <Input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="Clean Code"
+          defaultValue={initialData?.title}
+        />
         {errors?.title && (
           <p className="font-medium text-red-500 text-xs">{errors.title[0]}</p>
         )}
@@ -112,6 +130,7 @@ export function CertificateForm() {
           type="text"
           name="company"
           placeholder="Rocketseat"
+          defaultValue={initialData?.company}
         />
         {errors?.company && (
           <p className="font-medium text-red-500 text-xs">
@@ -127,6 +146,7 @@ export function CertificateForm() {
           type="number"
           name="hour_duration"
           placeholder="8"
+          defaultValue={initialData?.hour_duration}
         />
         {errors?.hour_duration && (
           <p className="font-medium text-red-500 text-xs">
@@ -137,14 +157,18 @@ export function CertificateForm() {
 
       <div className="space-y-1">
         <Label htmlFor="main_technology">Main Technology</Label>
-        <Select key={String(technologies)} name="main_technology">
+        <Select
+          key={String(technologies)}
+          name="main_technology"
+          defaultValue={initialData?.main_technology}
+        >
           <SelectTrigger disabled={isLoading}>
             <SelectValue placeholder="Select a technology" />
           </SelectTrigger>
           <SelectContent>
             {technologies?.map(({ id, name }) => (
               <SelectItem key={id} value={id}>
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3">
                   {iconsNode[getCleanText(name)]}
                   <span>{name}</span>
                 </div>

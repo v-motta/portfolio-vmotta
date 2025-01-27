@@ -26,7 +26,12 @@ export default async function CertificatesPage() {
 
       <div className="grid gap-5 py-8 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
         {allCertificates.map(certificate => (
-          <CertificateCard key={certificate.id} certificate={certificate} />
+          <Link
+            key={certificate.id}
+            href={`certificates/${certificate.slug}/edit`}
+          >
+            <CertificateCard certificate={certificate} />
+          </Link>
         ))}
       </div>
     </div>
