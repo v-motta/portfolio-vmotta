@@ -135,7 +135,7 @@ export const MultiSelect = React.forwardRef<
             variant="outline"
             className={cn(
               'flex h-auto min-h-10 w-full items-center justify-between rounded-md border p-1 [&_svg]:pointer-events-auto',
-              'border-zinc-400 dark:border-zinc-800',
+              'border-zinc-400 dark:border-zinc-700',
               className
             )}
           >
@@ -171,7 +171,7 @@ export const MultiSelect = React.forwardRef<
                   />
                   <Separator
                     orientation="vertical"
-                    className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-800"
+                    className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                   />
                   <ChevronDown className="mx-2 h-4 cursor-pointer text-neutral-400" />
                 </div>
@@ -253,7 +253,7 @@ export const MultiSelect = React.forwardRef<
                       </CommandItem>
                       <Separator
                         orientation="vertical"
-                        className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-800"
+                        className="flex h-full min-h-6 bg-zinc-400 dark:bg-zinc-700"
                       />
                     </>
                   )}

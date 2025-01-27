@@ -40,7 +40,7 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div
-    className="flex items-center border-b border-b-zinc-400 px-3 dark:border-b-zinc-800"
+    className="flex items-center border-b border-b-zinc-400 px-3 dark:border-b-zinc-700"
     cmdk-input-wrapper=""
   >
     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
@@ -105,7 +105,7 @@ const CommandSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 h-px bg-zinc-400 dark:bg-zinc-800', className)}
+    className={cn('-mx-1 h-px bg-zinc-400 dark:bg-zinc-700', className)}
     {...props}
   />
 ))
