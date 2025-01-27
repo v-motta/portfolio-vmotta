@@ -1,10 +1,8 @@
 'use client'
-
 import { MultiSelect } from '@/components/multi-select'
 import { Input } from '@/components/ui/input'
 import { getAllTechnologies } from '@/http/get-all-technologies'
 import { useQuery } from '@tanstack/react-query'
-import {} from 'lucide-react'
 import { useState } from 'react'
 
 export default function AddNewProjectPage() {
