@@ -1,6 +1,4 @@
 'use client'
-
-import { LoadingIcon } from '@/components/icons'
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { getProjectById } from '@/http/get-project-by-id'
@@ -17,13 +15,7 @@ export default function EditProjectSheet() {
     staleTime: 1000 * 60 * 60 * 24,
   })
 
-  if (isLoading) {
-    return (
-      <div>
-        <LoadingIcon />
-      </div>
-    )
-  }
+  if (isLoading) return null
 
   if (!data) {
     return (
