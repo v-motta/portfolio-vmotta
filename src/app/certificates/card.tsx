@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogOverlay,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
@@ -72,7 +71,6 @@ export function CertificateCard({
           </div>
         </div>
       </DialogTrigger>
-      <DialogOverlay />
       <DialogContent className="max-w-[90vw] xl:max-w-[60vw]">
         {certificate && (
           <>
