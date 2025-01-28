@@ -44,7 +44,7 @@ export async function loginForm(data: FormData) {
       }
     }
 
-    const checkPassword = compare(password, user.password)
+    const checkPassword = await compare(password, user.password)
     if (!checkPassword) {
       return {
         success: false,
