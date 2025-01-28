@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/dialog'
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
 
 export interface CardCertificateProps {
   certificate: {
@@ -31,10 +30,8 @@ export function CertificateCard({
   certificate,
   handleOnDelete,
 }: CardCertificateProps) {
-  const [openDialog, setOpenDialog] = useState(false)
-
   return (
-    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+    <Dialog>
       <DialogTrigger asChild>
         <div className="relative flex cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow dark:border-zinc-700">
           {handleOnDelete && (
