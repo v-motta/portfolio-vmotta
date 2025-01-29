@@ -34,7 +34,7 @@ export function Main() {
           height={384}
           quality={100}
           alt="A picture of myself"
-          className="aspect-square w-56 rounded-full object-cover shadow-[0px_0px_20px] shadow-zinc-400 lg:w-auto dark:shadow-zinc-600"
+          className="aspect-square w-56 rounded-full object-cover shadow-[#275AAE] shadow-[0px_0px_20px] lg:w-auto"
         />
       </div>
 
