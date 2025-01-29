@@ -8,7 +8,9 @@ import { z } from 'zod'
 const addNewCertificateFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),
   company: z.string().min(1, { message: 'Company is required' }),
-  hour_duration: z.number().min(1, { message: 'Hour duration is required' }),
+  hour_duration: z.coerce
+    .number()
+    .min(1, { message: 'Hour duration is required' }),
   main_technology: z
     .string()
     .min(1, { message: 'Main technology is required' }),
