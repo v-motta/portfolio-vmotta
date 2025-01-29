@@ -36,9 +36,9 @@ export async function Header() {
       <header className="sticky top-0 z-50 w-full md:h-24">
         <nav
           className={cn(
-            'flex h-full flex-col items-center justify-between gap-3 py-2',
+            'flex h-full flex-col items-center justify-between gap-3 py-2 md:gap-24',
             'border-zinc-400 border-b bg-zinc-200/90 dark:border-zinc-600 dark:bg-zinc-900/95',
-            'md:flex-row md:px-8'
+            'px-6 md:flex-row xl:px-16 2xl:px-44'
           )}
         >
           <Link
