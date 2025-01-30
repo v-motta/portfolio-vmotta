@@ -25,7 +25,7 @@ interface CertificateListProps {
 
 export function CertificateList({ certificates }: CertificateListProps) {
   const [certificateInfo, setCertificateInfo] =
-    useState<CertificateListProps['certificates'][0]>()
+    useState<CertificateListProps['certificates'][number]>()
 
   return (
     <>
@@ -86,24 +86,22 @@ export function CertificateList({ certificates }: CertificateListProps) {
         ))}
       </div>
 
-      <DialogContent className="max-w-[90vw] xl:max-w-[60vw]">
-        {certificateInfo && (
-          <>
-            <DialogTitle>{certificateInfo.title}</DialogTitle>
-            <DialogDescription>
-              Issued by {certificateInfo.company} on{' '}
-              {new Date(certificateInfo.issueDate).toLocaleDateString()}
-            </DialogDescription>
-            <Image
-              src={certificateInfo.imageUrl}
-              alt={certificateInfo.title}
-              width={1920}
-              height={1080}
-              className="h-full rounded-lg shadow-xl"
-            />
-          </>
-        )}
-      </DialogContent>
+      {certificateInfo && (
+        <DialogContent className="w-11/12 landscape:w-2/3">
+          <DialogTitle>{certificateInfo.title}</DialogTitle>
+          <DialogDescription>
+            Issued by {certificateInfo.company} on{' '}
+            {new Date(certificateInfo.issueDate).toLocaleDateString()}
+          </DialogDescription>
+          <Image
+            src={certificateInfo.imageUrl}
+            alt={certificateInfo.title}
+            width={1920}
+            height={1080}
+            className="max-h-full max-w-full object-contain"
+          />
+        </DialogContent>
+      )}
     </>
   )
 }
