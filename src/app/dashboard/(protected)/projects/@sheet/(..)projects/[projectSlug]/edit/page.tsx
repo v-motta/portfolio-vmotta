@@ -37,7 +37,7 @@ export default function EditProjectSheet() {
           initialData={{
             ...data,
             top_project: String(data.topProject),
-            frameworks: data.technologies,
+            technologies: data.technologies,
           }}
         />
       </InterceptedSheetContent>
