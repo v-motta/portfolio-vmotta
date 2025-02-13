@@ -28,7 +28,7 @@ export async function GET(
 
   const simplifiedCertificate = {
     ...certificate,
-    technologies: certificate.technologies.map(technology => technology.name),
+    technologies: certificate.technologies.map(technology => technology.id),
   }
 
   console.log(simplifiedCertificate)

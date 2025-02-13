@@ -80,7 +80,9 @@ export function CertificateForm({
     }
   })
 
-  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([])
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    initialData?.technologies || []
+  )
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">

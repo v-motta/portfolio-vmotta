@@ -12,8 +12,6 @@ const addNewCertificateFormSchema = z.object({
     .number()
     .min(1, { message: 'Hour duration is required' }),
   technologies: z.preprocess(val => {
-    console.log(val)
-
     if (typeof val === 'string') {
       try {
         return JSON.parse(val)

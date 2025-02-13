@@ -1,6 +1,7 @@
 import { iconsNode } from '@/components/icons/icon-node'
 import { getCleanText } from '@/lib/clean-text'
 import Image from 'next/image'
+import { Fragment } from 'react'
 
 export interface CardCertificateProps {
   certificate: {
@@ -15,30 +16,27 @@ export interface CardCertificateProps {
 
 export function CertificateCard({ certificate }: CardCertificateProps) {
   return (
-    <div className="relative flex cursor-pointer gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:scale-105 hover:bg-zinc-800 hover:shadow">
+    <div className="relative flex cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:scale-105 hover:bg-zinc-800 hover:shadow">
       <Image
         src={certificate.imageUrl}
         alt=""
-        width={176}
-        height={176}
+        width={700}
+        height={700}
         quality={100}
         priority
-        className="aspect-square h-36 rounded-lg object-cover object-center 2xl:h-36 dark:border-zinc-700"
+        className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-36 dark:border-zinc-700"
       />
-      <div className="flex w-full flex-col justify-between">
+      <div className="flex w-full flex-col justify-between gap-4">
         <div>
-          <h1 className="mb-2 line-clamp-2 font-bold font-mono text-xl">
+          <h1 className="mb-4 line-clamp-2 h-14 font-bold font-mono text-xl">
             {certificate.title}
           </h1>
 
           <div className="flex gap-4">
             {certificate.technologies.map(technology => (
-              <span
-                key={technology}
-                className="rounded-lg bg-zinc-200 px-2 py-1 font-semibold text-xs text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200"
-              >
+              <Fragment key={technology}>
                 {iconsNode[getCleanText(technology)]}
-              </span>
+              </Fragment>
             ))}
           </div>
         </div>
