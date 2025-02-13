@@ -1,7 +1,7 @@
 import ky from 'ky'
 
 interface GetCertificateBySlugResponse {
-  mainTechnology: string
+  technologies: string[]
   title: string
   slug: string
   company: string

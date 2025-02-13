@@ -14,7 +14,7 @@ export async function GET(
       company: true,
       imageUrl: true,
       issueDate: true,
-      mainTechnology: true,
+      technologies: true,
     },
     where: { slug },
   })
@@ -28,7 +28,7 @@ export async function GET(
 
   const simplifiedCertificate = {
     ...certificate,
-    mainTechnology: certificate.mainTechnology.id,
+    technologies: certificate.technologies.map(technology => technology.name),
   }
 
   console.log(simplifiedCertificate)

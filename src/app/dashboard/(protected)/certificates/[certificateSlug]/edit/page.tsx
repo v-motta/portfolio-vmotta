@@ -31,7 +31,7 @@ export default function EditCertificatePage() {
         isEditing
         initialData={{
           ...data,
-          main_technology: data.mainTechnology,
+          technologies: data.technologies,
           hour_duration: data.hourDuration,
           issue_date: data.issueDate,
           image: data.imageUrl,

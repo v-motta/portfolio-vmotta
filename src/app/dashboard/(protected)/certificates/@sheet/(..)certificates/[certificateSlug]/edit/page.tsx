@@ -31,14 +31,14 @@ export default function EditCertificateSheet() {
     <Sheet defaultOpen>
       <InterceptedSheetContent>
         <SheetHeader>
-          <SheetTitle>Edit project</SheetTitle>
+          <SheetTitle>Edit certificate</SheetTitle>
         </SheetHeader>
 
         <CertificateForm
           isEditing
           initialData={{
             ...data,
-            main_technology: data.mainTechnology,
+            technologies: data.technologies,
             hour_duration: data.hourDuration,
             issue_date: data.issueDate,
             image: data.imageUrl,
