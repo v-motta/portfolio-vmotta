@@ -31,7 +31,5 @@ export async function GET(
     technologies: certificate.technologies.map(technology => technology.id),
   }
 
-  console.log(simplifiedCertificate)
-
   return Response.json(simplifiedCertificate)
 }
