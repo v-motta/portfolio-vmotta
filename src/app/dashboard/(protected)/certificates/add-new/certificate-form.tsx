@@ -185,8 +185,6 @@ export function CertificateForm({
         )}
       </div>
 
-      {selectedTechnologies}
-
       <div className="space-y-1">
         <Label htmlFor="issue_date">Issue date</Label>
         <Popover>
