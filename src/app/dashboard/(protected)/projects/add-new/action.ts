@@ -10,12 +10,12 @@ const projectFormSchema = z.object({
   top_project: z.string().optional(),
   subtitle: z.string(),
   description: z.string(),
-  frameworks: z.preprocess(val => {
+  technologies: z.preprocess(val => {
     if (typeof val === 'string') {
       try {
         return JSON.parse(val)
       } catch {
-        throw new Error('Invalid JSON format for frameworks')
+        throw new Error('Invalid JSON format for technologies')
       }
     }
     return val
@@ -43,7 +43,7 @@ export async function addNewProjectForm(data: FormData) {
     top_project: topProject,
     subtitle,
     description,
-    frameworks,
+    technologies,
     github,
   } = result.data
 
@@ -59,7 +59,7 @@ export async function addNewProjectForm(data: FormData) {
         github,
         topProject: topProject === 'on',
         technologies: {
-          connect: frameworks.map(id => ({ id })),
+          connect: technologies.map(id => ({ id })),
         },
       },
       update: {
@@ -69,7 +69,7 @@ export async function addNewProjectForm(data: FormData) {
         github,
         topProject: topProject === 'on',
         technologies: {
-          set: frameworks.map(id => ({ id })),
+          set: technologies.map(id => ({ id })),
         },
       },
       where: { slug },
@@ -112,7 +112,7 @@ export async function editProjectForm(data: FormData) {
     top_project: topProject,
     subtitle,
     description,
-    frameworks,
+    technologies,
     github,
   } = result.data
 
@@ -126,7 +126,7 @@ export async function editProjectForm(data: FormData) {
         github,
         topProject: topProject === 'on',
         technologies: {
-          connect: frameworks.map(id => ({ id })),
+          connect: technologies.map(id => ({ id })),
         },
       },
     })

@@ -1,6 +1,7 @@
 'use client'
 
 import { iconsNode } from '@/components/icons/icon-node'
+import { MultiSelect } from '@/components/multi-select'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -42,6 +43,8 @@ export function CertificateForm({
     async (data: FormData) => {
       date && data.append('issue_date', date?.toLocaleDateString('en-CA'))
 
+      data.append('technologies', JSON.stringify(selectedTechnologies))
+
       return await addNewCertificateForm(data)
     },
     () => {
@@ -69,6 +72,15 @@ export function CertificateForm({
     const imageURL = URL.createObjectURL(event.target.files[0])
     setPreviewImage(imageURL)
   }
+
+  const technologiesList = technologies?.map(technology => {
+    return {
+      label: technology.name,
+      value: technology.id,
+    }
+  })
+
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([])
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
@@ -156,32 +168,24 @@ export function CertificateForm({
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor="main_technology">Main Technology</Label>
-        <Select
-          key={String(technologies)}
-          name="main_technology"
-          defaultValue={initialData?.main_technology}
-        >
-          <SelectTrigger disabled={isLoading}>
-            <SelectValue placeholder="Select a technology" />
-          </SelectTrigger>
-          <SelectContent>
-            {technologies?.map(({ id, name }) => (
-              <SelectItem key={id} value={id}>
-                <div className="flex items-center gap-3">
-                  {iconsNode[getCleanText(name)]}
-                  <span>{name}</span>
-                </div>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors?.main_technology && (
+        <Label htmlFor="technologies">Used technologies</Label>
+        <MultiSelect
+          id="technologies"
+          name="technologies"
+          options={technologiesList || []}
+          onValueChange={setSelectedTechnologies}
+          defaultValue={selectedTechnologies}
+          disabled={isLoading}
+          placeholder="Select technologies"
+        />
+        {errors?.technologies && (
           <p className="font-medium text-red-500 text-xs">
-            {errors.main_technology[0]}
+            {errors.technologies[0]}
           </p>
         )}
       </div>
+
+      {selectedTechnologies}
 
       <div className="space-y-1">
         <Label htmlFor="issue_date">Issue date</Label>

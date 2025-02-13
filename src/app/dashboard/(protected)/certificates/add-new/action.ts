@@ -11,9 +11,18 @@ const addNewCertificateFormSchema = z.object({
   hour_duration: z.coerce
     .number()
     .min(1, { message: 'Hour duration is required' }),
-  main_technology: z
-    .string()
-    .min(1, { message: 'Main technology is required' }),
+  technologies: z.preprocess(val => {
+    console.log(val)
+
+    if (typeof val === 'string') {
+      try {
+        return JSON.parse(val)
+      } catch {
+        throw new Error('Invalid JSON format for technologies')
+      }
+    }
+    return val
+  }, z.array(z.string())),
   issue_date: z.string().min(1, { message: 'Issue date is required' }),
   image: z.any().refine(value => value.size > 0, {
     message: 'Image is required',
@@ -39,7 +48,7 @@ export async function addNewCertificateForm(data: FormData) {
     title,
     company,
     hour_duration: hourDuration,
-    main_technology: mainTechnology,
+    technologies,
     issue_date: issueDate,
     image,
   } = result.data
@@ -71,7 +80,7 @@ export async function addNewCertificateForm(data: FormData) {
         slug: createSlug(title),
         company,
         hourDuration,
-        mainTechnology: { connect: { id: mainTechnology } },
+        technologies: { connect: technologies.map(id => ({ id })) },
         imageUrl,
         issueDate: new Date(issueDate).toISOString(),
       },

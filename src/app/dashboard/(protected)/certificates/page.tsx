@@ -13,14 +13,20 @@ export default async function CertificatesPage() {
       issueDate: true,
       slug: true,
       imageUrl: true,
-      mainTechnology: { select: { name: true } },
+      hourDuration: true,
+      technologies: {
+        select: {
+          name: true,
+        },
+      },
     },
     orderBy: { issueDate: 'desc' },
   })
 
   const allCertificatesSimplified = allCertificates.map(certificate => ({
     ...certificate,
-    mainTechnology: certificate.mainTechnology.name,
+    mainTechnology:
+      certificate.technologies[0]?.name || 'No technology specified',
   }))
 
   return (
@@ -39,14 +45,16 @@ export default async function CertificatesPage() {
       </div>
 
       <div className="grid gap-5 py-8 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
-        {allCertificatesSimplified.map(certificate => (
+        {/* {allCertificatesSimplified.map(certificate => (
           <Link
             key={certificate.id}
             href={`certificates/${certificate.slug}/edit`}
           >
             <CertificateCard certificate={certificate} />
           </Link>
-        ))}
+        ))} */}
+
+        <pre>{JSON.stringify(allCertificates, null, 2)}</pre>
       </div>
     </div>
   )

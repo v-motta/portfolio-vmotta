@@ -7,7 +7,7 @@ export function Technologies() {
       'bootstrap',
       'cypress',
       'javascript',
-      'next',
+      'nextjs',
       'react',
       'tailwind',
       'typescript',

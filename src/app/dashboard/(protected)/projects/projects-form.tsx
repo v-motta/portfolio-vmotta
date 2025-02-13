@@ -48,21 +48,21 @@ export function ProjectsForm({
 
   const [{ errors, success, message }, handleSubmit, isPending] = useFormState(
     async (data: FormData) => {
-      data.append('frameworks', JSON.stringify(selectedFrameworks))
+      data.append('technologies', JSON.stringify(selectedTechnologies))
 
       return await addNewProjectForm(data)
     }
   )
 
-  const frameworksList = technologies?.map(technology => {
+  const technologiesList = technologies?.map(technology => {
     return {
       label: technology.name,
       value: technology.id,
     }
   })
 
-  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>(
-    initialData?.frameworks || []
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    initialData?.technologies || []
   )
 
   return (
@@ -122,19 +122,19 @@ export function ProjectsForm({
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor="frameworks">Frameworks</Label>
+        <Label htmlFor="technologies">Used technologies</Label>
         <MultiSelect
-          id="frameworks"
-          name="frameworks"
-          options={frameworksList || []}
-          onValueChange={setSelectedFrameworks}
-          defaultValue={selectedFrameworks}
+          id="technologies"
+          name="technologies"
+          options={technologiesList || []}
+          onValueChange={setSelectedTechnologies}
+          defaultValue={selectedTechnologies}
           disabled={isLoadingTechnologies}
-          placeholder="Select frameworks"
+          placeholder="Select technologies"
         />
-        {errors?.frameworks && (
+        {errors?.technologies && (
           <p className="font-medium text-red-500 text-xs">
-            {errors.frameworks[0]}
+            {errors.technologies[0]}
           </p>
         )}
       </div>
