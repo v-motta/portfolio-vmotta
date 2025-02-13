@@ -5,7 +5,7 @@ import { minio } from '@/lib/minio-client'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
-const addNewCertificateFormSchema = z.object({
+const certificateFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),
   company: z.string().min(1, { message: 'Company is required' }),
   hour_duration: z.coerce
@@ -22,15 +22,13 @@ const addNewCertificateFormSchema = z.object({
     return val
   }, z.array(z.string())),
   issue_date: z.string().min(1, { message: 'Issue date is required' }),
-  image: z.any().refine(value => value.size > 0, {
-    message: 'Image is required',
-  }),
+  image: z.any(),
 })
 
-export type CertificateFormSchema = z.infer<typeof addNewCertificateFormSchema>
+export type CertificateFormSchema = z.infer<typeof certificateFormSchema>
 
-export async function addNewCertificateForm(data: FormData) {
-  const result = addNewCertificateFormSchema.safeParse(Object.fromEntries(data))
+export async function certificateAction(data: FormData, isEditing: boolean) {
+  const result = certificateFormSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors
@@ -61,25 +59,34 @@ export async function addNewCertificateForm(data: FormData) {
       'Content-Type': fileType,
     }
 
-    await minio.putObject(
-      bucket,
-      destinationObject,
-      sourceFile,
-      undefined,
-      metaData
-    )
+    if (!isEditing) {
+      await minio.putObject(
+        bucket,
+        destinationObject,
+        sourceFile,
+        undefined,
+        metaData
+      )
+    }
 
     const minioEndpoint = process.env.MINIO_ENDPOINT
     const imageUrl = `https://${minioEndpoint}/${bucket}/${destinationObject}`
 
-    await prisma.certificate.create({
-      data: {
+    await prisma.certificate.upsert({
+      where: { slug: createSlug(title) },
+      create: {
         title,
         slug: createSlug(title),
         company,
         hourDuration,
         technologies: { connect: technologies.map(id => ({ id })) },
         imageUrl,
+        issueDate: new Date(issueDate).toISOString(),
+      },
+      update: {
+        company,
+        hourDuration,
+        technologies: { connect: technologies.map(id => ({ id })) },
         issueDate: new Date(issueDate).toISOString(),
       },
     })

@@ -28,7 +28,8 @@ import { format } from 'date-fns'
 import { AlertTriangle, CalendarIcon } from 'lucide-react'
 import Image from 'next/image'
 import { type ChangeEvent, useState } from 'react'
-import { type CertificateFormSchema, addNewCertificateForm } from './action'
+import { twMerge } from 'tailwind-merge'
+import { type CertificateFormSchema, certificateAction } from './action'
 
 interface CertificateFormProps {
   isEditing?: boolean
@@ -45,7 +46,7 @@ export function CertificateForm({
 
       data.append('technologies', JSON.stringify(selectedTechnologies))
 
-      return await addNewCertificateForm(data)
+      return await certificateAction(data, isEditing)
     },
     () => {
       setPreviewImage(null)
@@ -96,7 +97,10 @@ export function CertificateForm({
 
       <label
         htmlFor="image"
-        className="aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-700 dark:text-zinc-400"
+        className={twMerge(
+          'aspect-video cursor-pointer content-center rounded-md border border-zinc-400 text-center text-zinc-600 dark:border-zinc-700 dark:text-zinc-400',
+          isEditing && 'cursor-not-allowed'
+        )}
       >
         {(isEditing && initialData?.image) || previewImage ? (
           <Image
@@ -121,6 +125,7 @@ export function CertificateForm({
         id="image"
         className="sr-only"
         onChange={handleOnChangeImage}
+        disabled={isEditing}
       />
 
       <div className="space-y-1">
@@ -131,6 +136,7 @@ export function CertificateForm({
           type="text"
           placeholder="Clean Code"
           defaultValue={initialData?.title}
+          disabled={isEditing}
         />
         {errors?.title && (
           <p className="font-medium text-red-500 text-xs">{errors.title[0]}</p>
@@ -219,7 +225,7 @@ export function CertificateForm({
       </div>
 
       <Button type="submit" className="mt-auto w-full" isPending={isPending}>
-        Add certificate
+        {isEditing ? 'Update certificate' : 'Add certificate'}
       </Button>
     </form>
   )
