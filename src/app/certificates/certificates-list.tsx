@@ -14,7 +14,7 @@ import { CertificateCard } from './card'
 
 interface CertificateListProps {
   certificates: {
-    mainTechnology: string
+    technologies: string[]
     id: string
     title: string
     company: string
@@ -52,7 +52,17 @@ export function CertificateList({ certificates }: CertificateListProps) {
                   <h1 className="mb-2 line-clamp-2 font-bold font-mono text-xl">
                     {certificate.title}
                   </h1>
-                  {iconsNode[getCleanText(certificate.mainTechnology)]}
+
+                  <div className="flex gap-4">
+                    {certificate.technologies.map(technology => (
+                      <span
+                        key={technology}
+                        className="rounded-lg bg-zinc-200 px-2 py-1 font-semibold text-xs text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200"
+                      >
+                        {iconsNode[getCleanText(technology)]}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <div>

@@ -10,14 +10,14 @@ export default async function CertificatesPage() {
       company: true,
       issueDate: true,
       imageUrl: true,
-      mainTechnology: { select: { name: true } },
+      technologies: { select: { name: true } },
     },
     orderBy: { issueDate: 'desc' },
   })
 
   const allCertificatesSimplified = allCertificates.map(certificate => ({
     ...certificate,
-    mainTechnology: certificate.mainTechnology.name,
+    technologies: certificate.technologies.map(technology => technology.name),
   }))
 
   return (
