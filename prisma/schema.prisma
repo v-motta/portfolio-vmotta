@@ -28,8 +28,7 @@ model Certificate {
   hourDuration Int      @map("hour_duration")
   createdAt    DateTime @default(now()) @map("created_at")
 
-  mainTechnology Technology @relation(fields: [technologyId], references: [id])
-  technologyId   String     @map("technology_id")
+  technologies Technology[]
 
   @@map("certificates")
 }
