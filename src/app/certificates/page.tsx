@@ -10,7 +10,7 @@ export default async function CertificatesPage() {
       company: true,
       issueDate: true,
       imageUrl: true,
-      technologies: { select: { name: true } },
+      technologies: { select: { name: true }, orderBy: { name: 'asc' } },
     },
     orderBy: { issueDate: 'desc' },
   })

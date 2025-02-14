@@ -1,9 +1,9 @@
 import { Separator } from '@/components/ui/separator'
 import { ContactForm } from '../contact/contact-form'
-import { Certificates } from './(sections)/certificates'
+import { Certificates } from './(sections)/certificates/certificates'
 import { Main } from './(sections)/main'
 import { Technologies } from './(sections)/technologies'
-import { TopProjects } from './(sections)/top-projects'
+import { TopProjects } from './(sections)/top-projects/top-projects'
 
 export default function HomePage() {
   return (

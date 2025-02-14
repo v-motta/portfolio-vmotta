@@ -17,7 +17,7 @@ export interface CardCertificateProps {
 
 export function CertificateCard({ certificate }: CardCertificateProps) {
   return (
-    <div className="relative flex cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
+    <div className="relative flex h-full cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
       <Image
         src={certificate.imageUrl}
         alt=""
@@ -25,15 +25,16 @@ export function CertificateCard({ certificate }: CardCertificateProps) {
         height={700}
         quality={100}
         priority
-        className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-36 dark:border-zinc-700"
+        className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-56 dark:border-zinc-700"
       />
-      <div className="flex w-full flex-col justify-between gap-4">
-        <div>
-          <h1 className="mb-4 line-clamp-2 h-14 font-bold font-mono text-xl">
+
+      <div className="flex w-full flex-1 flex-col justify-between gap-4">
+        <div className="h-full flex-1">
+          <h1 className="mb-4 line-clamp-2 h-14 flex-1 font-bold font-mono text-xl">
             {certificate.title}
           </h1>
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {certificate.technologies.map(technology => (
               <Fragment key={technology}>
                 {iconsNode[getCleanText(technology)]}

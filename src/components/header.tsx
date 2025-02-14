@@ -1,5 +1,8 @@
+'use client'
+
 import { cn } from '@/lib/utils'
 import { Headset, ScrollText, SquareTerminal, UserRound } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { GitHubIcon } from './icons/github'
 import { LinkedInIcon } from './icons/linkedin'
@@ -7,7 +10,7 @@ import { WhatsAppIcon } from './icons/whatsapp'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 
-export async function Header() {
+export function Header() {
   const links = [
     {
       href: '/about-me',
@@ -33,7 +36,15 @@ export async function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full md:h-24">
+      <motion.header
+        initial={{ y: -96, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.7,
+          ease: 'easeInOut',
+        }}
+        className="sticky top-0 z-50 w-full md:h-24"
+      >
         <nav
           className={cn(
             'flex h-full flex-col items-center justify-between gap-3 py-2 md:gap-24',
@@ -97,7 +108,7 @@ export async function Header() {
             </Button>
           </div>
         </nav>
-      </header>
+      </motion.header>
 
       <div
         className={cn(

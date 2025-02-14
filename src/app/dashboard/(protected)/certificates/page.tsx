@@ -14,9 +14,8 @@ export default async function CertificatesPage() {
       slug: true,
       imageUrl: true,
       technologies: {
-        select: {
-          name: true,
-        },
+        select: { name: true },
+        orderBy: { name: 'asc' },
       },
     },
     orderBy: { issueDate: 'desc' },

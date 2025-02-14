@@ -8,8 +8,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { getCleanText } from '@/lib/clean-text'
+import { format, formatDistance } from 'date-fns'
 import Image from 'next/image'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { CertificateCard } from './card'
 
 interface CertificateListProps {
@@ -29,14 +30,14 @@ export function CertificateList({ certificates }: CertificateListProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-5 md:flex-row">
+      <div className="grid grid-cols-3 gap-5">
         {certificates.slice(0, 3).map(certificate => (
           <DialogTrigger
             key={certificate.id}
             onClick={() => setCertificateInfo(certificate)}
             asChild
           >
-            <div className="cursor-pointer space-y-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:scale-105 hover:bg-zinc-800 hover:shadow">
+            <div className="cursor-pointer space-y-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
               <Image
                 src={certificate.imageUrl}
                 alt=""
@@ -44,23 +45,20 @@ export function CertificateList({ certificates }: CertificateListProps) {
                 height={600}
                 quality={100}
                 priority
-                className="rounded-lg object-cover object-center dark:border-zinc-700"
+                className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-72 dark:border-zinc-700"
               />
 
-              <div className="flex flex-col gap-5">
-                <div>
-                  <h1 className="mb-2 line-clamp-2 font-bold font-mono text-xl">
+              <div className="flex w-full flex-1 flex-col justify-between gap-4">
+                <div className="h-full flex-1">
+                  <h1 className="mb-4 line-clamp-2 h-14 flex-1 font-bold font-mono text-xl">
                     {certificate.title}
                   </h1>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap gap-4">
                     {certificate.technologies.map(technology => (
-                      <span
-                        key={technology}
-                        className="rounded-lg bg-zinc-200 px-2 py-1 font-semibold text-xs text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200"
-                      >
+                      <Fragment key={technology}>
                         {iconsNode[getCleanText(technology)]}
-                      </span>
+                      </Fragment>
                     ))}
                   </div>
                 </div>
@@ -71,11 +69,14 @@ export function CertificateList({ certificates }: CertificateListProps) {
                   </h2>
                   <p className="text-zinc-600 dark:text-zinc-400">
                     Issued:{' '}
-                    {new Intl.DateTimeFormat('pt-BR', {
-                      day: '2-digit',
-                      month: '2-digit',
-                      year: 'numeric',
-                    }).format(new Date(certificate.issueDate))}
+                    {formatDistance(
+                      new Date(certificate.issueDate),
+                      new Date(),
+                      {
+                        addSuffix: true,
+                      }
+                    )}{' '}
+                    - {format(new Date(certificate.issueDate), 'dd MMMM yyyy')}
                   </p>
                 </div>
               </div>
@@ -84,7 +85,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-4">
         {certificates.slice(3).map(certificate => (
           <DialogTrigger
             key={certificate.id}
