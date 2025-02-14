@@ -66,7 +66,7 @@ export function ProjectsForm({
   )
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-6">
+    <form onSubmit={handleSubmit} className="flex h-full flex-col gap-6">
       <div className="space-y-1">
         <Label htmlFor="title">Title</Label>
         <Input

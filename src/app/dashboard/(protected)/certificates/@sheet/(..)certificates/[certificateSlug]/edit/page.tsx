@@ -1,5 +1,6 @@
 'use client'
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { getCertificateBySlug } from '@/http/get-certificate-by-slug'
 import { useQuery } from '@tanstack/react-query'
@@ -34,16 +35,18 @@ export default function EditCertificateSheet() {
           <SheetTitle>Edit certificate</SheetTitle>
         </SheetHeader>
 
-        <CertificateForm
-          isEditing
-          initialData={{
-            ...data,
-            technologies: data.technologies,
-            hour_duration: data.hourDuration,
-            issue_date: data.issueDate,
-            image: data.imageUrl,
-          }}
-        />
+        <ScrollArea className="h-full">
+          <CertificateForm
+            isEditing
+            initialData={{
+              ...data,
+              technologies: data.technologies,
+              hour_duration: data.hourDuration,
+              issue_date: data.issueDate,
+              image: data.imageUrl,
+            }}
+          />
+        </ScrollArea>
       </InterceptedSheetContent>
     </Sheet>
   )

@@ -1,5 +1,6 @@
 'use client'
 import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { getProjectById } from '@/http/get-project-by-id'
 import { useQuery } from '@tanstack/react-query'
@@ -32,14 +33,16 @@ export default function EditProjectSheet() {
           <SheetTitle>Edit project</SheetTitle>
         </SheetHeader>
 
-        <ProjectsForm
-          isEditing
-          initialData={{
-            ...data,
-            top_project: String(data.topProject),
-            technologies: data.technologies,
-          }}
-        />
+        <ScrollArea className="h-full">
+          <ProjectsForm
+            isEditing
+            initialData={{
+              ...data,
+              top_project: String(data.topProject),
+              technologies: data.technologies,
+            }}
+          />
+        </ScrollArea>
       </InterceptedSheetContent>
     </Sheet>
   )
