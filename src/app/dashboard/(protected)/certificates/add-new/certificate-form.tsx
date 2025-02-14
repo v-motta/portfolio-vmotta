@@ -51,6 +51,7 @@ export function CertificateForm({
     () => {
       setPreviewImage(null)
       setDate(undefined)
+      setSelectedTechnologies([])
     }
   )
 
@@ -136,7 +137,7 @@ export function CertificateForm({
           type="text"
           placeholder="Clean Code"
           defaultValue={initialData?.title}
-          disabled={isEditing}
+          readOnly={isEditing}
         />
         {errors?.title && (
           <p className="font-medium text-red-500 text-xs">{errors.title[0]}</p>
