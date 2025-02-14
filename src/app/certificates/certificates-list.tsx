@@ -37,7 +37,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
             onClick={() => setCertificateInfo(certificate)}
             asChild
           >
-            <div className="cursor-pointer space-y-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
+            <div className="cursor-pointer space-y-4 rounded-2xl border border-zinc-400 p-4 shadow transition-all hover:bg-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800">
               <Image
                 src={certificate.imageUrl}
                 alt=""
@@ -45,7 +45,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
                 height={600}
                 quality={100}
                 priority
-                className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-72 dark:border-zinc-700"
+                className="aspect-video w-full rounded-lg object-cover object-bottom dark:border-zinc-700"
               />
 
               <div className="flex w-full flex-1 flex-col justify-between gap-4">

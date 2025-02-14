@@ -17,7 +17,7 @@ export interface CardCertificateProps {
 
 export function CertificateCard({ certificate }: CardCertificateProps) {
   return (
-    <div className="relative flex h-full cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow transition-all hover:bg-zinc-300 hover:shadow dark:border-zinc-700 dark:hover:bg-zinc-800">
+    <div className="relative flex h-full cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow transition-all hover:bg-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800">
       <Image
         src={certificate.imageUrl}
         alt=""
@@ -25,7 +25,7 @@ export function CertificateCard({ certificate }: CardCertificateProps) {
         height={700}
         quality={100}
         priority
-        className="aspect-square h-36 w-full rounded-lg object-cover object-bottom 2xl:h-56 dark:border-zinc-700"
+        className="aspect-video w-full rounded-lg object-cover object-bottom dark:border-zinc-700"
       />
 
       <div className="flex w-full flex-1 flex-col justify-between gap-4">
