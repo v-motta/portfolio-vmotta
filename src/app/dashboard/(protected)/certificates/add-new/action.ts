@@ -50,16 +50,17 @@ export async function certificateAction(data: FormData, isEditing: boolean) {
   } = result.data
 
   try {
-    const sourceFile = Buffer.from(await image.arrayBuffer())
-    const fileType = image.type
     const bucket = process.env.MINIO_BUCKET!
     const destinationObject = createSlug(title)
 
-    const metaData = {
-      'Content-Type': fileType,
-    }
-
     if (!isEditing) {
+      const sourceFile = Buffer.from(await image.arrayBuffer())
+      const fileType = image.type
+
+      const metaData = {
+        'Content-Type': fileType,
+      }
+
       await minio.putObject(
         bucket,
         destinationObject,
