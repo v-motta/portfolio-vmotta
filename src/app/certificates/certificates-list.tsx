@@ -30,7 +30,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid gap-5 lg:grid-cols-3">
         {certificates.slice(0, 3).map(certificate => (
           <DialogTrigger
             key={certificate.id}
@@ -85,7 +85,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-4">
         {certificates.slice(3).map(certificate => (
           <DialogTrigger
             key={certificate.id}
