@@ -21,16 +21,21 @@ export interface CardProjectProps {
 export function ProjectCard({ project }: CardProjectProps) {
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow dark:border-zinc-700">
-      <Image
-        // src={`/certificates/${project.slug}.webp`}
-        src="/myself.webp"
-        alt=""
-        width={1000}
-        height={1000}
-        quality={100}
-        priority
-        className="aspect-video rounded-lg border border-zinc-400 object-cover object-center dark:border-zinc-700"
-      />
+      {project.imagesUrl.length > 0 ? (
+        <Image
+          src={project.imagesUrl[0]}
+          alt={project.title}
+          width={1000}
+          height={1000}
+          quality={100}
+          priority
+          className="aspect-video rounded-lg border border-zinc-400 object-cover object-center dark:border-zinc-700"
+        />
+      ) : (
+        <div className="flex aspect-video items-center justify-center rounded-lg border border-zinc-400 bg-zinc-400 dark:border-zinc-700 dark:bg-zinc-800">
+          <h1>Project without image</h1>
+        </div>
+      )}
 
       <div className="text-center lg:text-start">
         <h1 className="mb-2 line-clamp-2 font-bold font-mono text-xl">

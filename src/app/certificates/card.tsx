@@ -17,7 +17,7 @@ export interface CardCertificateProps {
 
 export function CertificateCard({ certificate }: CardCertificateProps) {
   return (
-    <div className="relative flex h-full cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
+    <div className="relative flex h-full cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow transition-all hover:bg-zinc-300 hover:shadow dark:border-zinc-700 dark:hover:bg-zinc-800">
       <Image
         src={certificate.imageUrl}
         alt=""
