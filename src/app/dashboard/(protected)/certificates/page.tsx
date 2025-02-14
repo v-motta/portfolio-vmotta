@@ -42,7 +42,7 @@ export default async function CertificatesPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 py-8 xl:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 py-8 xl:grid-cols-3 2xl:grid-cols-4">
         {allCertificatesSimplified.map(certificate => (
           <Link
             key={certificate.id}

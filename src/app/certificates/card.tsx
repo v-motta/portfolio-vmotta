@@ -1,5 +1,6 @@
 import { iconsNode } from '@/components/icons/icon-node'
 import { getCleanText } from '@/lib/clean-text'
+import { format, formatDistance } from 'date-fns'
 import Image from 'next/image'
 import { Fragment } from 'react'
 
@@ -16,7 +17,7 @@ export interface CardCertificateProps {
 
 export function CertificateCard({ certificate }: CardCertificateProps) {
   return (
-    <div className="relative flex cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:scale-105 hover:bg-zinc-800 hover:shadow">
+    <div className="relative flex cursor-pointer flex-col gap-4 rounded-2xl border border-zinc-700 p-4 transition-all hover:bg-zinc-800 hover:shadow">
       <Image
         src={certificate.imageUrl}
         alt=""
@@ -47,11 +48,10 @@ export function CertificateCard({ certificate }: CardCertificateProps) {
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400">
             Issued:{' '}
-            {new Intl.DateTimeFormat('pt-BR', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric',
-            }).format(new Date(certificate.issueDate))}
+            {formatDistance(new Date(certificate.issueDate), new Date(), {
+              addSuffix: true,
+            })}{' '}
+            - {format(new Date(certificate.issueDate), 'dd MMMM yyyy')}
           </p>
         </div>
       </div>
