@@ -5,13 +5,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   useCarousel,
 } from '@/components/ui/carousel'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export interface CardProjectProps {
   project: {
@@ -28,6 +26,22 @@ export interface CardProjectProps {
 }
 
 export function ProjectCard({ project }: CardProjectProps) {
+  const router = useRouter()
+
+  function handleReadMore(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+
+    router.push(`/projects/${project.slug}`)
+  }
+
+  function handleGoToGithub(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+
+    if (project.github) {
+      window.open(project.github, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <div className="flex h-full flex-col gap-4 rounded-2xl border border-zinc-400 p-4 shadow dark:border-zinc-700">
       {project.imagesUrl.length > 0 ? (
@@ -67,15 +81,13 @@ export function ProjectCard({ project }: CardProjectProps) {
       </div>
 
       <div className="flex gap-5">
-        <Button variant="outline" className="flex-1" asChild>
-          <Link href={`/projects/${project.slug}`}>Read more</Link>
+        <Button variant="outline" className="flex-1" onClick={handleReadMore}>
+          Read more
         </Button>
 
         {project.github && (
-          <Button variant="outline" size="icon" asChild>
-            <a href={project.github} target="_blank" rel="noreferrer noopener">
-              <GitHubIcon />
-            </a>
+          <Button variant="outline" size="icon" onClick={handleGoToGithub}>
+            <GitHubIcon />
           </Button>
         )}
       </div>
@@ -86,23 +98,36 @@ export function ProjectCard({ project }: CardProjectProps) {
 function CarouselButtons() {
   const { scrollNext, canScrollNext, scrollPrev, canScrollPrev } = useCarousel()
 
+  function handleScrollPrev(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+
+    scrollPrev()
+  }
+
+  function handleScrollNext(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
+
+    scrollNext()
+  }
+
   return (
     <div className="mt-2 flex gap-x-2">
       <Button
         variant="outline"
         size="icon"
         disabled={!canScrollPrev}
-        onClick={scrollPrev}
+        onClick={handleScrollPrev}
       >
         <ArrowLeft className="h-4 w-4" />
         <span className="sr-only">Previous slide</span>
       </Button>
+
       <Button
         variant="outline"
         size="icon"
         className=""
         disabled={!canScrollNext}
-        onClick={scrollNext}
+        onClick={handleScrollNext}
       >
         <ArrowRight className="h-4 w-4" />
         <span className="sr-only">Next slide</span>

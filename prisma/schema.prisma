@@ -52,6 +52,7 @@ model Project {
 model Technology {
   id        String   @id @default(uuid())
   name      String   @unique
+  stacks    String[]
   createdAt DateTime @default(now()) @map("created_at")
 
   certificates Certificate[]
