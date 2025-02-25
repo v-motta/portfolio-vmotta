@@ -12,11 +12,11 @@ import { Button } from './ui/button'
 
 export function Header() {
   const links = [
-    {
-      href: '/about-me',
-      title: 'About me',
-      icon: UserRound,
-    },
+    // {
+    //   href: '/about-me',
+    //   title: 'About me',
+    //   icon: UserRound,
+    // },
     {
       href: '/projects',
       title: 'Projects',
